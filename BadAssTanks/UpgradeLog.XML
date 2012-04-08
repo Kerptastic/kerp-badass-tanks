@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="BadAssTanks">
+</Property><Property Name="Solution File" Value="C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks.sln">
+</Property><Property Name="User Options File" Value="C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks.suo">
+</Property><Property Name="Date" Value="Monday, March 29, 2010">
+</Property><Property Name="Time" Value="0:46 AM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="BadAssTanks.sln" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks.sln">
+</Event><Event ErrorLevel="0" Project="" Source="BadAssTanks.suo" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks.suo">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\BadAssTanks.csproj" Description="Project file successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\BadAssTanks.csproj">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\BossBot.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\BossBot.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Bullet.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Bullet.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Camera.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Camera.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Explosion.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Explosion.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Laser.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Laser.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Missile.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Missile.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\PlayerData.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\PlayerData.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\RoboWalker.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\RoboWalker.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\StartMenu.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\StartMenu.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Turret.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Turret.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Upgrade.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Upgrade.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Input\MouseHandler.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Input\MouseHandler.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Sprites\TextSprite.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Sprites\TextSprite.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\AudioHandler.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\AudioHandler.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\BoundingShape2D.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\BoundingShape2D.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\CollisionHandler.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\CollisionHandler.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\GameTimer.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\GameTimer.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\TextureHandler.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\TextureHandler.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\TrigHandler.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\TrigHandler.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\Tank.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\Tank.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\Vector.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\Vector.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Utility\VectorMath.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Utility\VectorMath.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Sprites\AnimatedSprite.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Sprites\AnimatedSprite.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Sprites\UnanimatedSprite.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Sprites\UnanimatedSprite.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Sprites\CustomSprite.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Sprites\CustomSprite.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\GameEngine.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\GameEngine.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\GameEngine.Designer.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\GameEngine.Designer.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Core\BadAssTanks.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Core\BadAssTanks.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Input\KeyboardHandler.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Input\KeyboardHandler.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Properties\Resources.Designer.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Properties\Settings.Designer.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\World\EnemyFactory.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\World\EnemyFactory.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\World\GameWorld.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\World\GameWorld.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\World\HeadsUpDisplay.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\World\HeadsUpDisplay.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\World\WeaponFactory.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\World\WeaponFactory.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\World\WorldObject.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\World\WorldObject.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\World\WorldTile.cs" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\World\WorldTile.cs">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Properties\Settings.settings" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\Properties\Resources.resx" Description="File successfully backed up as C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\Backup\BadAssTanks\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\BadAssTanks.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="BadAssTanks" Source="BadAssTanks\BadAssTanks.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="BadAssTanks.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="BadAssTanks.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="BadAssTanks" Source="BadAssTanks\BadAssTanks.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

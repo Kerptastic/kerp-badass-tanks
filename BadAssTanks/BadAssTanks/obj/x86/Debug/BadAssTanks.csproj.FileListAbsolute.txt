@@ -1,0 +1,8 @@
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\bin\x86\Debug\BadAssTanks.exe
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.Properties.Resources.resources
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.exe
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.pdb
+C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\bin\x86\Debug\BadAssTanks.pdb
