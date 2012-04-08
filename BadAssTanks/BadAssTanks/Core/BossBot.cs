@@ -6,7 +6,7 @@ using System.Drawing;
 
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
-
+/* FAT COCKS */
 namespace BadAssTanks
 {
     class BossBot : WorldObject
