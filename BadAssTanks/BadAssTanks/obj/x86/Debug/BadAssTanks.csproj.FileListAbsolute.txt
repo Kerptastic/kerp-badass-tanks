@@ -6,3 +6,6 @@ C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\ResGen.w
 C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.exe
 C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.pdb
 C:\Users\Kerp\Desktop\BadAssTanks\BadAssTanks\BadAssTanks\bin\x86\Debug\BadAssTanks.pdb
+C:\Users\Kerp\Documents\Visual Studio 2010\Projects\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.exe
+C:\Users\Kerp\Documents\Visual Studio 2010\Projects\BadAssTanks\BadAssTanks\BadAssTanks\obj\x86\Debug\BadAssTanks.pdb
+C:\Users\Kerp\Documents\Visual Studio 2010\Projects\BadAssTanks\BadAssTanks\BadAssTanks\bin\x86\Debug\BadAssTanks.exe.config
