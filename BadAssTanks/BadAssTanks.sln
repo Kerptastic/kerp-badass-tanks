@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadAssTanks", "BadAssTanks\BadAssTanks.csproj", "{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadassTanksXNA", "BadassTanksXNA\BadassTanksXNA\BadassTanksXNA.csproj", "{418F0A72-B134-4F18-9597-454053E069E7}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "BadassTanksXNAContent", "BadassTanksXNA\BadassTanksXNAContent\BadassTanksXNAContent.contentproj", "{51753F01-9111-4C9C-BE29-0E4A3D393C14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +13,16 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Debug|x86.ActiveCfg = Debug|x86
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Debug|x86.Build.0 = Debug|x86
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Release|x86.ActiveCfg = Release|x86
-		{73E8C024-D6A5-4A00-9B0B-C69409EDD1D4}.Release|x86.Build.0 = Release|x86
+		{418F0A72-B134-4F18-9597-454053E069E7}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{418F0A72-B134-4F18-9597-454053E069E7}.Debug|x86.ActiveCfg = Debug|x86
+		{418F0A72-B134-4F18-9597-454053E069E7}.Debug|x86.Build.0 = Debug|x86
+		{418F0A72-B134-4F18-9597-454053E069E7}.Release|Any CPU.ActiveCfg = Release|x86
+		{418F0A72-B134-4F18-9597-454053E069E7}.Release|x86.ActiveCfg = Release|x86
+		{418F0A72-B134-4F18-9597-454053E069E7}.Release|x86.Build.0 = Release|x86
+		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Debug|x86.ActiveCfg = Debug|x86
+		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Release|Any CPU.ActiveCfg = Release|x86
+		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
