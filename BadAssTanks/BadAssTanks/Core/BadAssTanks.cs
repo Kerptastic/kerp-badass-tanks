@@ -16,20 +16,22 @@ namespace BadAssTanks
             using (GameEngine gEngine = GameEngine.GetInstance())
             {
                 //populate the trig handlers tables
-                TrigHandler.GetInstance();
+                //TrigHandler.GetInstance();
 
-                //load the audio
-                AudioHandler.GetInstance();
+                ////load the audio
+                //AudioHandler.GetInstance();
 
-                gEngine.InitializeInputDevices();
-                gEngine.InitializeDeviceParams(true);
-                gEngine.InitializeDirect3D();
-                gEngine.InitializeEventHandlers();
-                gEngine.InitializeTextures();
+                //gEngine.InitializeInputDevices();
+                //gEngine.InitializeDeviceParams(true);
+                //gEngine.InitializeDirect3D();
+                //gEngine.InitializeEventHandlers();
+                //gEngine.InitializeTextures();
 
-                gEngine.SetupGame(false);
+                //gEngine.SetupGame(false);
                                
-                Application.Run(gEngine);
+                //Application.Run(gEngine);
+
+                gEngine.Run();
             }
         }
     }
