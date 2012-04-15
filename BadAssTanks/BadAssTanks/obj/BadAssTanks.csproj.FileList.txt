@@ -1,7 +1,0 @@
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\BadAssTanks.Properties.Resources.resources
-obj\Debug\BadAssTanks.csproj.GenerateResource.Cache
-bin\BadAssTanks.exe
-bin\BadAssTanks.pdb
-obj\Debug\BadAssTanks.exe
-obj\Debug\BadAssTanks.pdb
