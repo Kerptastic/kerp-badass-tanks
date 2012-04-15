@@ -3,45 +3,59 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
+using BadAssTanks.Utility;
+
 namespace BadAssTanks
 {
     /// <summary>
     /// Base class defining the behavior required for all Sprites in the
     /// Game Engine.
     /// </summary>
-    public class CustomSprite
+    public abstract class CustomSprite
     {
         /// <summary>
         /// 
         /// </summary>
-        protected Rectangle _dimensions;
+        protected PairInt _dimensions;
+        public int Width { get { return _dimensions.X; } set { _dimensions.X = value; } }
+        public int Height { get { return _dimensions.Y; } set { _dimensions.Y = value; } }
         /// <summary>
         /// 
         /// </summary>
-        protected Point _location;
+        protected PairInt _location;
+        public int X { get { return _location.X; } set { _location.X = value; } }
+        public int Y { get { return _location.Y; } set { _location.Y = value; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public void SetDimensions(int width, int height)
+        {
+            this._dimensions = new PairInt(width, height);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void SetLocation(int x, int y)
+        {
+            this._location = new PairInt(x, y);
+        }
 
         /// <summary>
         /// 
         /// </summary>
         public abstract void Draw();
 
+
+
         //public abstract void Move(MathHandler moveVector);
         //public abstract void Rotate(float angle);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="location"></param>
-        public void SetLocation(Point location)
-        {
-            this._location = location;
-        }
-
-        public void SetLocation(float x, float y)
-        {
-            this.SetLocation(new Point(x, y));
-        }
-        
         //public abstract void SetFacingAngle(float angleInDegrees);
         //public abstract void SetMaterialColor(Color color);
 

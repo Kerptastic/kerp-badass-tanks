@@ -5,7 +5,7 @@ using Drawing = System.Drawing;
 
 namespace BadAssTanks
 {
-    public class TextSprite : CustomSprite
+    public class TextSprite// : CustomSprite
     {
         //private Device m_device = null; 
         //private Sprite m_sprite = null;

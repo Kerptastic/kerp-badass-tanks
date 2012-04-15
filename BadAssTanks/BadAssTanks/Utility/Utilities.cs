@@ -6,60 +6,58 @@ using System.Text;
 namespace BadAssTanks.Utility
 {
     /// <summary>
-    /// Provides utility functionality and data to be used by the Game Engine.
+    /// Represents a pair of int values.
     /// </summary>
-    public class Utilities
+    public class PairInt
     {
         /// <summary>
-        /// Represents coordinates using int values.
+        /// The x value of the pair.
         /// </summary>
-        public struct CoordsInt
-        {
-            /// <summary>
-            /// The x location in the coordinates.
-            /// </summary>
-            public int _x;
-            /// <summary>
-            /// The y location in the coordinates.
-            /// </summary>
-            public int _y;
-
-            /// <summary>
-            /// Creates a new set of integer coordinates.
-            /// </summary>
-            /// <param name="x">The x location in the coordinates.</param>
-            /// <param name="y">The y location in the coordinates.</param>
-            public CoordsInt(int x, int y)
-            {
-                this._x = x;
-                this._y = y;
-            }
-        }
+        private int _x;
+        public int X { get; set; }
+        /// <summary>
+        /// The y value of the pair.
+        /// </summary>
+        private int _y;
+        public int Y { get; set; }
 
         /// <summary>
-        /// Represents coordinates using float values.
+        /// Creates a new integer pair.
         /// </summary>
-        public struct CoordsFloat
+        /// <param name="x">The x value of the pair</param>
+        /// <param name="y">The y value of the pair</param>
+        public PairInt(int x, int y)
         {
-            /// <summary>
-            /// The x location in the coordinates.
-            /// </summary>
-            public float _x;
-            /// <summary>
-            /// The y location in the coordinates.
-            /// </summary>
-            public float _y;
+            this._x = x;
+            this._y = y;
+        }
+    }
 
-            /// <summary>
-            /// Creates a new set of float coordinates.
-            /// </summary>
-            /// <param name="x">The x location in the coordinates.</param>
-            /// <param name="y">The y location in the coordinates.</param>
-            public CoordsFloat(float x, float y)
-            {
-                this._x = x;
-                this._y = y;
-            }
+    /// <summary>
+    /// Represents a pair of float values.
+    /// </summary>
+    public class PairFloat
+    {
+        /// <summary>
+        /// The x value of the pair.
+        /// </summary>
+        private float _x;
+        public float X { get; set; }
+        /// <summary>
+        /// The y value of the pair.
+        /// </summary>
+        private float _y;
+        public float Y { get; set; }
+
+        /// <summary>
+        /// Creates a new float pair.
+        /// </summary>
+        /// <param name="x">The x value of the pair</param>
+        /// <param name="y">The y value of the pair</param>
+        public PairFloat(float x, float y)
+        {
+            this._x = x;
+            this._y = y;
         }
     }
 }

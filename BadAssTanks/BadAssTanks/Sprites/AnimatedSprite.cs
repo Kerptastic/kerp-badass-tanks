@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace BadAssTanks
 {
-    public class AnimatedSprite : CustomSprite
+    public class AnimatedSprite// : CustomSprite
     {
     //    private Device m_device = null;
 

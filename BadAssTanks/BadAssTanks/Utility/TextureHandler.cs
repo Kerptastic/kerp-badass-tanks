@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BadAssTanks
 {
@@ -14,6 +15,12 @@ namespace BadAssTanks
         /// The static instance of the Game Engine. Used for the Singleton Pattern.
         /// </summary>
         public static TextureHandler _instance = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private Texture2D _tank;
+        public Texture2D TankTexture { get { return _tank; } }
 
         //private ArrayList m_waterImageStrings = null;
         //private ArrayList m_waterTextures = null;

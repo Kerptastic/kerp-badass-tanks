@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace BadAssTanks
 {
-    public class UnanimatedSprite : CustomSprite
+    public class UnanimatedSprite// : CustomSprite
     {
         //private Device m_device = null;
         //private Texture m_texture = null;

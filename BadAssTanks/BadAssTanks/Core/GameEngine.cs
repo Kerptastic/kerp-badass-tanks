@@ -39,7 +39,7 @@ namespace BadAssTanks
         //private Camera m_gameCamera = null;
         //private Camera m_hudCamera = null;
 
-        //private TextureHandler m_textureHandler = null;
+        private TextureHandler _textureHandler = null;
         //private GameWorld m_world = null;
         //private ArrayList m_keys = null;
 
@@ -96,7 +96,7 @@ namespace BadAssTanks
                 _instance = new GameEngine();
             }
 
-            return m_instance;
+            return _instance;
         }
 
         /// <summary>
@@ -117,8 +117,12 @@ namespace BadAssTanks
         /// </summary>
         protected override void LoadContent()
         {
+            //init the sprite batch and graphics device
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _graphicsDevice = _gdManager.GraphicsDevice;
+
+            //init the handlers
+            _textureHandler = TextureHandler.GetInstance();
         }
 
         /// <summary>
