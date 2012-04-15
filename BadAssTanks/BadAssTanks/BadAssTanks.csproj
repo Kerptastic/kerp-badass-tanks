@@ -106,17 +106,12 @@
     <Compile Include="Utility\TextureHandler.cs" />
     <Compile Include="Utility\TrigHandler.cs" />
     <Compile Include="Core\Tank.cs" />
+    <Compile Include="Utility\Utilities.cs" />
     <Compile Include="Utility\Vector.cs" />
-    <Compile Include="Utility\VectorMath.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\UnanimatedSprite.cs" />
     <Compile Include="Sprites\CustomSprite.cs" />
-    <Compile Include="Core\GameEngine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\GameEngine.Designer.cs">
-      <DependentUpon>GameEngine.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Core\GameEngine.cs" />
     <Compile Include="Core\BadAssTanks.cs" />
     <Compile Include="Input\KeyboardHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

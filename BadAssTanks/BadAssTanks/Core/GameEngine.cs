@@ -3,23 +3,38 @@ using System.Collections;
 using System.Data;
 using System.Timers;
 using System.Threading;
-using System.Windows.Forms;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Timers = System.Timers;
+using System.Drawing;
 
 namespace BadAssTanks
 {
+    /// <summary>
+    /// The Game Engine to be used for BadAssTanks. Handles the Graphics Device
+    /// Initialization and the creation of all the major moving parts in the engine.
+    /// </summary>
     public class GameEngine : Game
     {
-        private static GameEngine m_instance = null;
-
-        private GraphicsDeviceManager m_gdManager;
-        private SpriteBatch m_spriteBatch;
-        private GraphicsDevice m_graphicsDevice;
+        /// <summary>
+        /// The static instance of the Game Engine. Used for the Singleton Pattern.
+        /// </summary>
+        private static GameEngine _instance = null;
+        /// <summary>
+        /// The Graphice Device Manager for settings up the Game Window.
+        /// </summary>
+        private GraphicsDeviceManager _gdManager;
+        /// <summary>
+        /// The Sprite Batch for holding sprites to be drawn to the screen.
+        /// </summary>
+        private SpriteBatch _spriteBatch;
+        /// <summary>
+        /// The Graphics Device drawing the images to the screen.
+        /// </summary>
+        private GraphicsDevice _graphicsDevice;
 
         //private Camera m_gameCamera = null;
         //private Camera m_hudCamera = null;
@@ -64,6 +79,9 @@ namespace BadAssTanks
         /// </summary>
         private GameEngine()
         {
+            _gdManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+
             Initialize();
         }
 
@@ -73,8 +91,10 @@ namespace BadAssTanks
         /// <returns></returns>
         public static GameEngine GetInstance()
         {
-            if (m_instance == null)
-                m_instance = new GameEngine();
+            if (_instance == null)
+            {
+                _instance = new GameEngine();
+            }
 
             return m_instance;
         }
@@ -82,24 +102,28 @@ namespace BadAssTanks
         /// <summary>
         /// Initialize the graphics device and the game window setup.
         /// </summary>
-        private void Initialize()
+        protected override void Initialize()
         {
-            m_gdManager.PreferredBackBufferWidth = 800;
-            m_gdManager.PreferredBackBufferHeight = 600;
-            m_gdManager.IsFullScreen = false;
-            m_gdManager.ApplyChanges();
+            _gdManager.PreferredBackBufferWidth = 800;
+            _gdManager.PreferredBackBufferHeight = 600;
+            _gdManager.IsFullScreen = false;
+            _gdManager.ApplyChanges();
 
             Window.Title = "Bad-Ass Tanks!";
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void LoadContent()
         {
-            m_spriteBatch = new SpriteBatch(GraphicsDevice);
-            m_graphicsDevice = m_gdManager.GraphicsDevice;
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _graphicsDevice = _gdManager.GraphicsDevice;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void UnloadContent()
         {
             
@@ -498,7 +522,7 @@ namespace BadAssTanks
         /// </summary>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
 
             base.Draw(gameTime);
 
