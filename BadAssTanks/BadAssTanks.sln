@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadassTanksXNA", "BadassTanksXNA\BadassTanksXNA\BadassTanksXNA.csproj", "{418F0A72-B134-4F18-9597-454053E069E7}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "BadassTanksXNAContent", "BadassTanksXNA\BadassTanksXNAContent\BadassTanksXNAContent.contentproj", "{51753F01-9111-4C9C-BE29-0E4A3D393C14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadassTanksXNAContent", "BadassTanksXNA\BadassTanksXNAContent\BadassTanksXNAContent.contentproj", "{51753F01-9111-4C9C-BE29-0E4A3D393C14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineCore2D", "Engine_Core_2D\EngineCore2D.csproj", "{9A4E8805-276A-4406-89D4-6DC1467C5A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,12 @@ Global
 		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Debug|x86.ActiveCfg = Debug|x86
 		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Release|Any CPU.ActiveCfg = Release|x86
 		{51753F01-9111-4C9C-BE29-0E4A3D393C14}.Release|x86.ActiveCfg = Release|x86
+		{9A4E8805-276A-4406-89D4-6DC1467C5A9E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9A4E8805-276A-4406-89D4-6DC1467C5A9E}.Debug|x86.ActiveCfg = Debug|x86
+		{9A4E8805-276A-4406-89D4-6DC1467C5A9E}.Debug|x86.Build.0 = Debug|x86
+		{9A4E8805-276A-4406-89D4-6DC1467C5A9E}.Release|Any CPU.ActiveCfg = Release|x86
+		{9A4E8805-276A-4406-89D4-6DC1467C5A9E}.Release|x86.ActiveCfg = Release|x86
+		{9A4E8805-276A-4406-89D4-6DC1467C5A9E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
