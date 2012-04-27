@@ -92,10 +92,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Camera.cs" />
+    <Compile Include="Engine\Camera2D.cs" />
     <Compile Include="Engine\GameEngine2D.cs" />
     <Compile Include="Engine\GameObject2D.cs" />
     <Compile Include="Engine\GameWorld.cs" />
+    <Compile Include="Misc\Utilities.cs" />
     <Compile Include="Sprites\AnimatedSprite2D.cs" />
     <Compile Include="Sprites\CustomSprite.cs" />
     <Compile Include="Sprites\TextSprite2D.cs" />

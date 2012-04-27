@@ -14,7 +14,7 @@ namespace EngineCore2D.Sprites
         /// The Texture that will be drawn for this Sprite.
         /// </summary>
         protected Texture2D _texture;
-        public Texture2D Texture { get; set; }
+        public Texture2D Texture { get { return _texture; } set { _texture = value; } }
 
         /// <summary>
         /// Creates a new Sprite with the given Texture.

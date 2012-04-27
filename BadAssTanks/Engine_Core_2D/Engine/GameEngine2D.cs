@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace EngineCore2D.Engine
 {
@@ -38,15 +37,18 @@ namespace EngineCore2D.Engine
         /// 
         /// </summary>
         protected GameWorld _gameWorld = null;
-        public GameWorld GameWorld { get; set; }
-
+        public GameWorld GameWorld { get { return _gameWorld; } set { _gameWorld = value; } }
+        /// <summary>
+        /// 
+        /// </summary>
+        protected Camera2D _camera2d = null;
+        public Camera2D Camera2D { get { return _camera2d; } }
         /// <summary>
         /// 
         /// </summary>
         protected Texture2DHandler _textureHandler = null;
         public Texture2DHandler TextureHandler { get { return _textureHandler; } }
         #endregion
-
 
         /// <summary>
         /// Creates a new GameEngine2D.  This needs to be implemented by a custom
@@ -70,6 +72,8 @@ namespace EngineCore2D.Engine
             this._gdManager.PreferredBackBufferHeight = 600;
             this._gdManager.IsFullScreen = false;
             this._gdManager.ApplyChanges();
+
+            this._camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector2(0, 0));
 
             this.Window.Title = "Bad-Ass Tanks!";
 
@@ -118,6 +122,8 @@ namespace EngineCore2D.Engine
         /// <param name="gameTime">The current GameTime.</param>
         protected override void Update(GameTime gameTime)
         {
+            this._camera2d.Update();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
             {
                 this.Exit();
@@ -420,10 +426,13 @@ namespace EngineCore2D.Engine
         /// </summary>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
-            
+            _spriteBatch.Begin(SpriteSortMode.Deferred, 
+                               BlendState.AlphaBlend, 
+                               null, null, null, null, 
+                               _camera2d.View);
+
             _gameWorld.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();

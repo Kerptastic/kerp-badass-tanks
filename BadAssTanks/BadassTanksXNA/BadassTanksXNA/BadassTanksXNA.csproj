@@ -133,7 +133,6 @@
     <Compile Include="Utility\CollisionHandler.cs" />
     <Compile Include="Utility\GameTimer.cs" />
     <Compile Include="Utility\TrigHandler.cs" />
-    <Compile Include="Utility\Utilities.cs" />
     <Compile Include="Utility\Vector.cs" />
     <Compile Include="BadAssTanks_World\EnemyFactory.cs" />
     <Compile Include="BadAssTanks_World\HeadsUpDisplay.cs" />
