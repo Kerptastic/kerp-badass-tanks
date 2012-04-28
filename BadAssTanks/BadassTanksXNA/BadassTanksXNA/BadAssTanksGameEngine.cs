@@ -45,6 +45,25 @@ namespace BadassTanksXNA
 
             this._gameWorld.TestObject.Move(leftStick, 5.0f);
             //this._gameWorld.TestObject.Rotation = rightStick.Length();
+
+            KeyboardState keyboard = Keyboard.GetState();
+
+            if (keyboard.IsKeyDown(Keys.D))
+            {
+                this._gameWorld.TestObject.Move(new Vector2(1.0f, 0.0f), 5.0f);
+            }
+            else if (keyboard.IsKeyDown(Keys.A))
+            {
+                this._gameWorld.TestObject.Move(new Vector2(-1.0f, 0.0f), 5.0f);
+            }
+            else if (keyboard.IsKeyDown(Keys.S))
+            {
+                this._gameWorld.TestObject.Move(new Vector2(0.0f, 1.0f), 5.0f);
+            }
+            else if (keyboard.IsKeyDown(Keys.W))
+            {
+                this._gameWorld.TestObject.Move(new Vector2(0.0f, -1.0f), 5.0f);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
