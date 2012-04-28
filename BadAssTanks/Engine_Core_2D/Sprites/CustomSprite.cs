@@ -1,7 +1,6 @@
-
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace EngineCore2D.Sprites
 {
@@ -21,22 +20,52 @@ namespace EngineCore2D.Sprites
         /// Creates a new Sprite with the given Texture.
         /// </summary>
         /// <param name="texture">The Texture that will be drawn for this Sprite.</param>
-        protected CustomSprite(Texture2D texture)
+        public CustomSprite(Texture2D texture)
         {
             this._texture = texture;
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="position"></param>
+        /// <param name="rotation"></param>
+        /// <param name="scale"></param>
+        /// <param name="textureTint"></param>
+        /// <param name="effects"></param>
+        /// <param name="layerDepth"></param>
+        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale,
+            Color textureTint, SpriteEffects effects, float layerDepth);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="position"></param>
+        /// <param name="rotationOrigin"></param>
+        /// <param name="rotation"></param>
+        /// <param name="scale"></param>
+        /// <param name="textureTint"></param>
+        /// <param name="effects"></param>
+        /// <param name="layerDepth"></param>
+        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, float rotation,
+            float scale, Color textureTint, SpriteEffects effects, float layerDepth);
+
+        /// <summary>
         /// Draws the Sprite to the screen.  Will be implemented differently for the concrete
         /// Sprite classes.
-        /// </summary>
+        /// <summary>
         /// <param name="spriteBatch">The SpriteBatch used to draw the Sprite to the screen.</param>
-        /// <param name="drawingRectangle">The Drawing Rectangle where the Sprite will be drawn on the screen.</param>
+        /// <param name="position"></param>
+        /// <param name="rotation"></param>
+        /// <param name="scale"></param>
+        /// <param name="sourceRectangle"></param>
         /// <param name="textureTint">The Tint color to use when drawing the Sprite.</param>
-        public abstract void Draw(SpriteBatch spriteBatch, Rectangle drawingRectangle, Color textureTint);
-
+        /// <param name="rotationOrigin"></param>
+        /// <param name="effects"></param>
+        /// <param name="layerDepth"></param>
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale,
-                                  Nullable<Rectangle> sourceRectangle, Color textureTint, Vector2 origin,
-                                  SpriteEffects effects, float layerDepth);
+            Rectangle? sourceRectangle, Color textureTint, Vector2 rotationOrigin, SpriteEffects effects, float layerDepth);
     }
 }

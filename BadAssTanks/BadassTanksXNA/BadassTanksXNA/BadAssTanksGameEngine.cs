@@ -52,19 +52,24 @@ namespace BadassTanksXNA
             {
                 this._gameWorld.TestObject.Move(new Vector2(1.0f, 0.0f), 5.0f);
             }
-            else if (keyboard.IsKeyDown(Keys.A))
+            if (keyboard.IsKeyDown(Keys.A))
             {
                 this._gameWorld.TestObject.Move(new Vector2(-1.0f, 0.0f), 5.0f);
             }
-            else if (keyboard.IsKeyDown(Keys.S))
+            if (keyboard.IsKeyDown(Keys.S))
             {
                 this._gameWorld.TestObject.Move(new Vector2(0.0f, 1.0f), 5.0f);
             }
-            else if (keyboard.IsKeyDown(Keys.W))
+            if (keyboard.IsKeyDown(Keys.W))
             {
                 this._gameWorld.TestObject.Move(new Vector2(0.0f, -1.0f), 5.0f);
             }
+            if (keyboard.IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
         }
+
 
         protected override void Draw(GameTime gameTime)
         {

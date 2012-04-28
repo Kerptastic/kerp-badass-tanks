@@ -27,6 +27,10 @@ namespace EngineCore2D.Engine
         /// The Texture Map holding the sprites to be retrieved when needed.
         /// </summary>
         protected Dictionary<string, Texture2D> _textureMap = new Dictionary<string, Texture2D>();
+        /// <summary>
+        /// The Texture Map holding the sprite fonts to be retrieved when needed.
+        /// </summary>
+        protected Dictionary<string, SpriteFont> _fontTextureMap = new Dictionary<string, SpriteFont>();
 
         /// <summary>
         /// Creates a new 2D Texture Handler. 
@@ -41,6 +45,7 @@ namespace EngineCore2D.Engine
             this._contentManager = contentManager;
 
             this.LoadTextures();
+            this.LoadFontTextures();
         }
 
         /// <summary>
@@ -58,8 +63,27 @@ namespace EngineCore2D.Engine
         }
 
         /// <summary>
+        /// Retrieves a SpriteFontTexture that is saved to the given string key.
+        /// </summary>
+        /// <param name="fontTextureName">The name of the SpriteFontTexture to retrieve</param>
+        /// <returns>A SpriteFontTexture object with the supplied fontTextureName.</returns>
+        public virtual SpriteFont GetFontTexture(string fontTextureName)
+        {
+            SpriteFont returnTexture;
+
+            _fontTextureMap.TryGetValue(fontTextureName, out returnTexture);
+
+            return returnTexture;
+        }
+
+        /// <summary>
         /// Loads the Textures - implemented by extending classes.
         /// </summary>
         protected abstract void LoadTextures();
+
+        /// <summary>
+        /// Loads the Font Textures - implemented by extending classes.
+        /// </summary>
+        protected abstract void LoadFontTextures();
     }
 }

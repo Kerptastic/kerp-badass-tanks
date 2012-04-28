@@ -121,6 +121,8 @@
     <Compile Include="BadAssTanks_Objects\RoboWalker.cs" />
     <Compile Include="BadAssTanks_Objects\StartMenu.cs" />
     <Compile Include="BadAssTanks_Objects\Tank.cs" />
+    <Compile Include="BadAssTanks_Objects\TextObject.cs" />
+    <Compile Include="BadAssTanks_Objects\TitleTextObject.cs" />
     <Compile Include="BadAssTanks_Objects\Turret.cs" />
     <Compile Include="BadAssTanks_Objects\Upgrade.cs" />
     <Compile Include="BadAssTanks_World\BadAssTanksWorld.cs" />

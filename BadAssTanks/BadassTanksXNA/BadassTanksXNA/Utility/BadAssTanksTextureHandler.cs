@@ -20,6 +20,9 @@ namespace BadassTanksXNA.Utility
         private Texture2D _titleBad;
         public Texture2D TitleBadTexture { get { return _titleBad; } }
 
+        private SpriteFont _courierNewFont;
+        public SpriteFont CourierNew { get { return _courierNewFont; } }
+
         /// <summary>
         /// 
         /// </summary>
@@ -30,14 +33,25 @@ namespace BadassTanksXNA.Utility
         {
         }
 
+        
         /// <summary>
-        /// Returns a texture with the given textureName from the texture map.
+        /// Overriding for testing purposes.
         /// </summary>
-        /// <param name="textureName">The name of the texture to return.</param>
-        /// <returns>A texture from the texture map with the name provided.</returns>
+        /// <param name="textureName"></param>
+        /// <returns></returns>
         public override Texture2D GetTexture(string textureName)
         {
             return _titleBad;
+        }
+
+        /// <summary>
+        /// Overriding for testing purposes.
+        /// </summary>
+        /// <param name="textureName"></param>
+        /// <returns></returns>
+        public override SpriteFont GetFontTexture(string fontTextureName)
+        {
+            return _courierNewFont;
         }
 
         /// <summary>
@@ -50,6 +64,18 @@ namespace BadassTanksXNA.Utility
             //
             
             _titleBad = _contentManager.Load<Texture2D>("bad");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void LoadFontTextures()
+        {
+            //
+            //TODO: load all the textures from the string names file and add them to the map
+            //
+
+            _courierNewFont = _contentManager.Load<SpriteFont>("courierNew");
         }
     }
 }

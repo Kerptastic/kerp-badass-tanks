@@ -96,13 +96,14 @@
     <Compile Include="Engine\GameEngine2D.cs" />
     <Compile Include="Engine\GameObject2D.cs" />
     <Compile Include="Engine\GameWorld.cs" />
+    <Compile Include="Engine\QuadTree.cs" />
     <Compile Include="Misc\Utilities.cs" />
     <Compile Include="Sprites\AnimatedSprite2D.cs" />
     <Compile Include="Sprites\CustomSprite.cs" />
     <Compile Include="Sprites\TextSprite2D.cs" />
-    <Compile Include="Sprites\UnanimatedSprite2D.cs" />
     <Compile Include="Engine\Texture2DHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprites\UnanimatedSprite.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
