@@ -12,11 +12,12 @@ namespace BadassTanksXNA.BadAssTanks_World
     public class BadAssTanksWorld : GameWorld
     {
         private GameObject2D obj1;
-        
+        public GameObject2D TestObject { get { return obj1; } }
+
         public BadAssTanksWorld(Texture2DHandler textureHandler)
             : base(textureHandler)
         {
-            obj1 = new GameObject2D(new UnanimatedSprite(_textureHandler.GetTexture("bad")), 10, 10, 300, 300, Color.White);
+            obj1 = new GameObject2D(new UnanimatedSprite(_textureHandler.GetTexture("bad")), 50, 50, 300, 300, Color.White);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

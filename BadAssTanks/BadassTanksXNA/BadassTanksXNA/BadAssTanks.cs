@@ -18,7 +18,7 @@ namespace BadassTanksXNA
         [STAThread]
         static void Main()
         {
-            using (GameEngine2D gameEngine = new BadAssTanksGameEngine())
+            using (GameEngine2D<BadAssTanksWorld> gameEngine = new BadAssTanksGameEngine())
             {
                 gameEngine.Run();
             }

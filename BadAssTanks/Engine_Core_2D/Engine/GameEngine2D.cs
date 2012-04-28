@@ -15,7 +15,7 @@ namespace EngineCore2D.Engine
     /// use the interface provided by those classes - relying on the implementation provided
     /// by the implementing Game class.
     /// </summary>
-    public abstract class GameEngine2D : Game
+    public abstract class GameEngine2D<GameWorldType> : Game
     {
         #region XNA Related Objects
         /// <summary>
@@ -36,8 +36,8 @@ namespace EngineCore2D.Engine
         /// <summary>
         /// 
         /// </summary>
-        protected GameWorld _gameWorld = null;
-        public GameWorld GameWorld { get { return _gameWorld; } set { _gameWorld = value; } }
+        protected GameWorldType _gameWorld = default(GameWorldType);
+        public GameWorldType GameWorld { get { return _gameWorld; } set { _gameWorld = value; } }
         /// <summary>
         /// 
         /// </summary>
@@ -427,15 +427,6 @@ namespace EngineCore2D.Engine
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-            _spriteBatch.Begin(SpriteSortMode.Deferred, 
-                               BlendState.AlphaBlend, 
-                               null, null, null, null, 
-                               _camera2d.View);
-
-            _gameWorld.Draw(gameTime, _spriteBatch);
-
-            _spriteBatch.End();
 
             base.Draw(gameTime);
 

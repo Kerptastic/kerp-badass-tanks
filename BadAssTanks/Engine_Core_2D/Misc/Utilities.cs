@@ -68,12 +68,32 @@ namespace EngineCore2D.Misc
     public static class Utilities
     {
         /// <summary>
+        /// Ensure the angle value stays between -180 and 180 so the numbers
+        /// never get so large or small that they break precision or overflow.
+        /// </summary>
+        /// <param name="radians">The angle to clamp between -180 and 180.</param>
+        /// <returns>A clamped angle, clamped between -180 and 180.</returns>
+        public static float ClampAngleDegrees(float degrees)
+        {
+            while (degrees < -180)
+            {
+                degrees += 360;
+            }
+            while (degrees > 180)
+            {
+                degrees -= 360;
+            }
+
+            return degrees;
+        }
+
+        /// <summary>
         /// Ensure the angle value stays between -Pi and Pi so the numbers
         /// never get so large or small that they break precision or overflow.
         /// </summary>
         /// <param name="radians">The angle to clamp between -Pi and Pi.</param>
         /// <returns>A clamped angle, clamped between -Pi and Pi.</returns>
-        public static float ClampAngle(float radians)
+        public static float ClampAngleRadians(float radians)
         {
             while (radians < -MathHelper.Pi)
             {

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace EngineCore2D.Sprites
 {
@@ -27,6 +28,15 @@ namespace EngineCore2D.Sprites
         public override void Draw(SpriteBatch spriteBatch, Rectangle drawingRectangle, Color textureTint)
         {
             spriteBatch.Draw(_texture, drawingRectangle, textureTint);
+        }
+
+
+        public override void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale, 
+                                  Nullable<Rectangle> sourceRectangle, Color textureTint, Vector2 origin,
+                                  SpriteEffects effects, float layerDepth)
+        {
+            spriteBatch.Draw(_texture, position, sourceRectangle, textureTint, rotation, origin,
+                                scale, effects, layerDepth);
         }
 
         #region Old Sprite Drawing Code
@@ -191,7 +201,7 @@ namespace EngineCore2D.Sprites
         //    m_verts[3] = new CustomVertex.PositionNormalTextured(new Vector3(-1.0f, -1.0f, 0.0f), normal2, 0.0f, 1.0f);
         //    m_verts[4] = new CustomVertex.PositionNormalTextured(new Vector3(1.0f, -1.0f, 0.0f), normal2, 1.0f, 1.0f);
         //    m_verts[5] = new CustomVertex.PositionNormalTextured(new Vector3(1.0f, 1.0f, 0.0f), normal2, 1.0f, 0.0f);
-            
+
         //    vBuffer.SetData(m_verts, 0, LockFlags.None);
         //}
         #endregion

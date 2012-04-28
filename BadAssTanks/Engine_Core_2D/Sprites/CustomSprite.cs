@@ -1,6 +1,7 @@
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace EngineCore2D.Sprites
 {
@@ -33,5 +34,9 @@ namespace EngineCore2D.Sprites
         /// <param name="drawingRectangle">The Drawing Rectangle where the Sprite will be drawn on the screen.</param>
         /// <param name="textureTint">The Tint color to use when drawing the Sprite.</param>
         public abstract void Draw(SpriteBatch spriteBatch, Rectangle drawingRectangle, Color textureTint);
+
+        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale,
+                                  Nullable<Rectangle> sourceRectangle, Color textureTint, Vector2 origin,
+                                  SpriteEffects effects, float layerDepth);
     }
 }

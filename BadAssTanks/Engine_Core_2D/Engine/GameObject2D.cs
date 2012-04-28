@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using EngineCore2D.Sprites;
+using EngineCore2D.Misc;
 
 namespace EngineCore2D.Engine
 {
@@ -21,6 +22,12 @@ namespace EngineCore2D.Engine
         /// The Sprite to be drawn on the screen.
         /// </summary>
         protected CustomSprite _sprite;
+         /// <summary>
+        /// The tint color to use when drawing the Sprite. By default, will
+        /// be Color.White, which will use no tint.
+        /// </summary>
+        protected Color _textureTint = Color.White;
+        public Color TextureTint { get { return _textureTint; } set { _textureTint = value; } }
         /// <summary>
         /// The drawing rectangle for the sprite. Contains X/Y location, 
         /// and Width/Height values for drawing.
@@ -28,19 +35,24 @@ namespace EngineCore2D.Engine
         private Rectangle _drawingRectangle;
         public int Width { get { return _drawingRectangle.Width; } set { _drawingRectangle.Width = value; } }
         public int Height { get { return _drawingRectangle.Height; } set { _drawingRectangle.Height = value; } }
+        
         /// <summary>
-        /// 
+        /// The current position of this object.
         /// </summary>
         protected Vector2 _position;
         public float X { get { return _position.X; } set { _position.X = value; _drawingRectangle.X = (int)_position.X; } }
         public float Y { get { return _position.Y; } set { _position.Y = value; _drawingRectangle.X = (int)_position.X; } }
         public Vector2 Position { get { return _position; } set { _position = value; } }
         /// <summary>
-        /// The tint color to use when drawing the Sprite. By default, will
-        /// be Color.White, which will use no tint.
+        /// The current rotation angle of this object.
         /// </summary>
-        protected Color _textureTint = Color.White;
-        public Color TextureTint { get { return _textureTint; } set { _textureTint = value; } }
+        protected float _rotation;
+        public float Rotation { get { return _rotation; } set { this._rotation = Utilities.ClampAngleDegrees(value); } }
+        /// <summary>
+        /// The current scale factor of this object.
+        /// </summary>
+        protected float _scale;
+        public float ScaleValue { get { return _scale; } set { _scale = value; } }
         /// <summary>
         /// The speed at which this object moves in a particular direction.
         /// </summary>
@@ -54,6 +66,7 @@ namespace EngineCore2D.Engine
         /// the game (i.e., a camera, a light, etc)
         /// </summary>
         public GameObject2D(float xLocation, float yLocation)
+            : this(null, xLocation, yLocation, 0, 0, Color.White)
         {
         }
 
@@ -66,13 +79,16 @@ namespace EngineCore2D.Engine
         /// <param name="yLocation">The initial Y location of the sprite on the screen.</param>
         /// <param name="width">The width of the Sprite to be drawn.</param>
         /// <param name="height">The height of the Sprite to be drawn.</param>
-        /// <param name="textureTint"></param>
+        /// <param name="textureTint">The color to tint the Sprite when being drawn.</param>
         public GameObject2D(CustomSprite sprite, float xLocation, float yLocation, int width, int height, Color textureTint)
         {
             this._sprite = sprite;
 
             this._drawingRectangle = new Rectangle((int)xLocation, (int)yLocation, width, height);
             this._textureTint = textureTint;
+
+            this._rotation = 0.0f;
+            this._scale = 1.0f;
         }
 
         /// <summary>
@@ -83,7 +99,8 @@ namespace EngineCore2D.Engine
         {
             if (_sprite != null)
             {
-                _sprite.Draw(spriteBatch, _drawingRectangle, _textureTint);
+                //_sprite.Draw(spriteBatch, _drawingRectangle, _textureTint);
+                _sprite.Draw(spriteBatch, _position, _rotation, _scale, null, _textureTint, new Vector2(0, 0), SpriteEffects.None, 0);
             }
         }
 
@@ -108,22 +125,47 @@ namespace EngineCore2D.Engine
             this._position += (direction * moveSpeed);
         }
 
+        /// <summary>
+        /// Increases (positive) or decreases (negative) the current rotation value
+        /// by the provided amount.
+        /// </summary>
+        /// <param name="amount">The amount to increase (positive) or decrease (negative) the rotation value by.</param>
+        public virtual void Rotate(float amountInDegrees)
+        {
+            this._rotation += amountInDegrees;
+        }
+
+        /// <summary>
+        /// Increases (positive) or decreases (negative) the current scale value
+        /// by the provided amount.
+        /// </summary>
+        /// <param name="amount">The amount to increase (positive) or decrease (negative) the scale factor by.</param>
+        public virtual void Scale(float amount)
+        {
+            this._scale += amount;
+        }
+
+        /// <summary>
+        /// Sets the tint color of this object to the new tint color.
+        /// </summary>
+        /// <param name="newTintColor">The new color to tint this object with when drawing.</param>
+        public virtual void Tint(Color newTintColor)
+        {
+            this._textureTint = newTintColor;
+        }
+
 
         //public abstract void Destroy();
         //public abstract bool IsDestroyed();
         //public abstract bool ReadyToFire();
-        //public abstract void Move(String direction, Camera camera);
-        //public abstract void Move(float angle);
-        //public abstract void Move(WorldObject obj);
-        //public abstract void Rotate(String direction);
+
         //public abstract void RotateGundam(float angle);
-        //public abstract void Render();
+
         //public abstract ArrayList FireWeapon(String weaponName);
-        //public abstract float GetFacingAngle();
+
         //public abstract BoundingShape2D GetBoundingShape();
-        //public abstract GameEngine.IntCoords GetWorldCoords();
-        //public abstract GameEngine.FloatCoords GetTileCoords();
-        //public abstract void Tint(Color color);
+
+
         //public abstract bool ReduceHealth(float value);
         //public abstract int GetCrashDamage();
         //public abstract long GetPointValue();
