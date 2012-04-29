@@ -47,7 +47,7 @@ namespace EngineCore2D.Engine
         /// 
         /// </summary>
         protected Texture2DHandler _textureHandler = null;
-        public Texture2DHandler TextureHandler { get { return _textureHandler; } }
+        public Texture2DHandler TextureHandler { get { return _textureHandler; } }      
         #endregion
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace EngineCore2D.Engine
             this._gdManager.ApplyChanges();
 
             this._camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector2(0, 0));
-
+           
             this.Window.Title = "Bad-Ass Tanks!";
 
             base.Initialize();

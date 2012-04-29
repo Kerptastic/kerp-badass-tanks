@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace EngineCore2D.Misc
 {
@@ -105,6 +106,25 @@ namespace EngineCore2D.Misc
             }
 
             return radians;
+        }
+
+        /// <summary>
+        /// Draws the outline of a given rectangle with the given texture pixel.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
+        /// <param name="pixelTexture">The Texture to use for drawing.</param>
+        /// <param name="rectangle">The Rectangle to draw the outline of.</param>
+        public static void DrawBoxOutline(SpriteBatch spriteBatch, Texture2D pixelTexture, Rectangle rectangle)
+        {
+            Rectangle top = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 1);
+            Rectangle bottom = new Rectangle(rectangle.X, rectangle.Y + rectangle.Height, rectangle.Width, 1);
+            Rectangle left = new Rectangle(rectangle.X, rectangle.Y, 1, rectangle.Height);
+            Rectangle right = new Rectangle(rectangle.X + rectangle.Width , rectangle.Y, 1, rectangle.Height);
+
+            spriteBatch.Draw(pixelTexture, top, Color.White);
+            spriteBatch.Draw(pixelTexture, bottom, Color.White);
+            spriteBatch.Draw(pixelTexture, left, Color.White);
+            spriteBatch.Draw(pixelTexture, right, Color.White);
         }
     }
 }

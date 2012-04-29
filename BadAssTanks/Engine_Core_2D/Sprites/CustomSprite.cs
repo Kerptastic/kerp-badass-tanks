@@ -26,46 +26,45 @@ namespace EngineCore2D.Sprites
         }
 
         /// <summary>
-        /// 
+        /// Draws this Sprite to the Screen.
         /// </summary>
-        /// <param name="spriteBatch"></param>
-        /// <param name="position"></param>
-        /// <param name="rotation"></param>
-        /// <param name="scale"></param>
-        /// <param name="textureTint"></param>
-        /// <param name="effects"></param>
-        /// <param name="layerDepth"></param>
+        /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
+        /// <param name="position">The position to draw the Sprite on the screen.</param>
+        /// <param name="rotation">The rotation of the Sprite to be drawn.</param>
+        /// <param name="scale">The scale of the Sprite to be drawn.</param>
+        /// <param name="textureTint">The tint to draw the Sprite.</param>
+        /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
+        /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale,
             Color textureTint, SpriteEffects effects, float layerDepth);
 
         /// <summary>
-        /// 
+        /// Draws this Sprite to the Screen.
         /// </summary>
-        /// <param name="spriteBatch"></param>
-        /// <param name="position"></param>
-        /// <param name="rotationOrigin"></param>
-        /// <param name="rotation"></param>
-        /// <param name="scale"></param>
-        /// <param name="textureTint"></param>
-        /// <param name="effects"></param>
-        /// <param name="layerDepth"></param>
+        /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
+        /// <param name="position">The position to draw the Sprite on the screen.</param>
+        /// <param name="rotationOrigin">The point to perform the rotation around.</param>
+        /// <param name="rotation">The rotation of the Sprite to be drawn.</param>
+        /// <param name="scale">The scale of the Sprite to be drawn.</param>
+        /// <param name="textureTint">The tint to draw the Sprite.</param>
+        /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
+        /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, float rotation,
             float scale, Color textureTint, SpriteEffects effects, float layerDepth);
 
         /// <summary>
-        /// Draws the Sprite to the screen.  Will be implemented differently for the concrete
-        /// Sprite classes.
-        /// <summary>
-        /// <param name="spriteBatch">The SpriteBatch used to draw the Sprite to the screen.</param>
-        /// <param name="position"></param>
-        /// <param name="rotation"></param>
-        /// <param name="scale"></param>
-        /// <param name="sourceRectangle"></param>
-        /// <param name="textureTint">The Tint color to use when drawing the Sprite.</param>
-        /// <param name="rotationOrigin"></param>
-        /// <param name="effects"></param>
-        /// <param name="layerDepth"></param>
-        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale,
-            Rectangle? sourceRectangle, Color textureTint, Vector2 rotationOrigin, SpriteEffects effects, float layerDepth);
+        /// Draws this Sprite to the Screen.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
+        /// <param name="position">The position to draw the Sprite on the screen.</param>
+        /// <param name="rotationOrigin">The point to perform the rotation around.</param>
+        /// <param name="rotation">The rotation of the Sprite to be drawn.</param>
+        /// <param name="scale">The scale of the Sprite to be drawn.</param>
+        /// <param name="sourceRectangle">The texels to draw for this Sprite.</param>
+        /// <param name="textureTint">The tint to draw the Sprite.</param>
+        /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
+        /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
+        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, float rotation, 
+            float scale, Rectangle? sourceRectangle, Color textureTint,  SpriteEffects effects, float layerDepth);
     }
 }

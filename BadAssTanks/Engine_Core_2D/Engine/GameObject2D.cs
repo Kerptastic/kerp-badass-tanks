@@ -32,8 +32,8 @@ namespace EngineCore2D.Engine
         /// The current position of this object.
         /// </summary>
         protected Vector2 _position;
-        public float X { get { return _position.X; } set { _position.X = value; } }
-        public float Y { get { return _position.Y; } set { _position.Y = value; } }
+        public float X { get { return _position.X; } set { _position.X = value; _boundingRectangle.X = (int)value; } }
+        public float Y { get { return _position.Y; } set { _position.Y = value; _boundingRectangle.Y = (int)value; } }
         public Vector2 Position { get { return _position; } set { _position = value; } }
         /// <summary>
         /// The current rotation angle of this object.
@@ -50,15 +50,24 @@ namespace EngineCore2D.Engine
         /// </summary>
         protected float _moveSpeed = 1.0f;
         public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
-
+        /// <summary>
+        /// The bounding rectangle around this game object. Used for collision detection
+        /// and quad tree placement.
+        /// </summary>
+        protected Rectangle _boundingRectangle;
+        public Rectangle BoundingRectangle { get { return _boundingRectangle; } }
 
         /// <summary>
         /// Default constructor which just represents an object in the game
         /// that isnt drawn to the screen, but still has a location within 
         /// the game (i.e., a camera, a light, etc)
         /// </summary>
-        public GameObject2D(float xLocation, float yLocation)
-            : this(null, xLocation, yLocation, Color.White)
+        /// <param name="xLocation">The initial X location of the object on the screen.</param>
+        /// <param name="yLocation">The initial Y location of the object on the screen.</param>
+        /// <param name="width">The width of the object.</param>
+        /// <param name="height">The height of the object.</param>
+        public GameObject2D(float xLocation, float yLocation, float width, float height)
+            : this(null, xLocation, yLocation, width, height, Color.White)
         {
         }
 
@@ -69,8 +78,11 @@ namespace EngineCore2D.Engine
         /// <param name="sprite">The Sprite that will be drawn.</param>
         /// <param name="xLocation">The initial X location of the sprite on the screen.</param>
         /// <param name="yLocation">The initial Y location of the sprite on the screen.</param>
+        /// <param name="width">The width of the object.</param>
+        /// <param name="height">The height of the object.</param>
         /// <param name="textureTint">The color to tint the Sprite when being drawn.</param>
-        public GameObject2D(CustomSprite sprite, float xLocation, float yLocation, Color textureTint)
+        public GameObject2D(CustomSprite sprite, float xLocation, float yLocation, 
+            float width, float height, Color textureTint)
         {
             this._position = new Vector2(xLocation, yLocation);
             this._sprite = sprite;
@@ -78,6 +90,8 @@ namespace EngineCore2D.Engine
 
             this._rotation = 0.0f;
             this._scale = 1.0f;
+
+            this._boundingRectangle = new Rectangle((int)xLocation, (int)yLocation, (int)width, (int)height);
         }
 
         /// <summary>
@@ -88,7 +102,7 @@ namespace EngineCore2D.Engine
         {
             if (_sprite != null)
             {
-                _sprite.Draw(spriteBatch, _position, _rotation, _scale, null, _textureTint, new Vector2(0, 0), SpriteEffects.None, 0);
+                _sprite.Draw(spriteBatch, _position, _rotation, _scale, _textureTint, SpriteEffects.None, 0.0f);
             }
         }
 

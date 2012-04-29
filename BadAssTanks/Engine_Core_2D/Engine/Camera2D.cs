@@ -66,7 +66,7 @@ namespace EngineCore2D.Engine
         /// <param name="objectToFollow">The instance of a Game Object to follow.</param>
         /// <param name="targetMovementCushion">The amount of freedom the following object has to move before the camera begins to follow.</param>
         public Camera2D(Viewport viewport, Vector2 position, GameObject2D objectToFollow, float targetMovementCushion)
-            : base(position.X, position.Y)
+            : base(position.X, position.Y, 0.0f, 0.0f)
         {
             this._viewport = viewport;
             this._position = position;

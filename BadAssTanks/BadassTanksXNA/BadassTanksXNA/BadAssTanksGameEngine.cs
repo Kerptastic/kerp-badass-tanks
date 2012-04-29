@@ -22,7 +22,7 @@ namespace BadassTanksXNA
             base.LoadContent();
 
             this._textureHandler = new BadAssTanksTextureHandler("", Content);
-            this._gameWorld = new BadAssTanksWorld(this._textureHandler);
+            this._gameWorld = new BadAssTanksWorld(this._textureHandler, GraphicsDevice.Viewport);
         }
 
         protected override void Update(GameTime gameTime)
@@ -80,7 +80,7 @@ namespace BadassTanksXNA
                                null, null, null, null,
                                _camera2d.View);
 
-            _gameWorld.Draw(gameTime, _spriteBatch);
+            _gameWorld.Draw(_spriteBatch, gameTime);
 
             _spriteBatch.End();
         }

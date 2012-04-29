@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 using EngineCore2D.Sprites;
+using Engine_Core_2D.Engine;
 
 namespace EngineCore2D.Engine
 {
@@ -10,14 +11,30 @@ namespace EngineCore2D.Engine
     /// </summary>
     public abstract class GameWorld
     {
+        protected Viewport _viewport;
+        
+        /// <summary>
+        /// 
+        /// </summary>
         protected Texture2DHandler _textureHandler;
+        public Texture2DHandler TextureHandler { get { return _textureHandler; } }
 
-        public GameWorld(Texture2DHandler textureHandler)
+        /// <summary>
+        /// 
+        /// </summary>
+        protected QuadTree _quadTree;
+        public QuadTree QuadTree { get { return _quadTree; } }
+
+        public GameWorld(Texture2DHandler textureHandler, Viewport viewport)
         {
             this._textureHandler = textureHandler;
+            this._viewport = viewport;
+
+            this._quadTree = new QuadTree(new UnanimatedSprite(_textureHandler.GetTexture("whitePixel")),
+               0, 0, viewport.Width, viewport.Height); 
         }
 
-        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+        public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 
         //public enum WorldObjectType
         //{
