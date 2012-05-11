@@ -95,7 +95,6 @@
     <Compile Include="Engine_2D\Camera2D.cs" />
     <Compile Include="Engine_3D\Camera3D.cs" />
     <Compile Include="Engine_3D\Camera3DFirstPerson.cs" />
-    <Compile Include="Engine_3D\Class1.cs" />
     <Compile Include="Engine_3D\GameObject3D.cs" />
     <Compile Include="Global\GameEngine.cs" />
     <Compile Include="Engine_2D\GameObject2D.cs" />
