@@ -1,5 +1,5 @@
-﻿using EngineCore2D.Engine;
-using EngineCore2D.Sprites;
+﻿using KerpEngine.Engine_2D;
+using KerpEngine.Engine_2D.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -18,8 +18,14 @@ namespace BadassTanksXNA.BadAssTanks_Objects
         /// <param name="yLocation">The y location to draw the object.</param>
         /// <param name="textureTint">The tint color to use when drawing the object.</param>
         public TextObject2D(TextSprite sprite, int xLocation, int yLocation, Color textureTint)
-            : base(sprite, xLocation, yLocation, 0.0f, 0.0f, textureTint)
+            : base(sprite, xLocation, yLocation, textureTint)
         {
+        }
+
+
+        public void SetText(string newText)
+        {
+            ((TextSprite)_sprite).Text = newText;
         }
 
         /// <summary>

@@ -1,7 +1,8 @@
-﻿using EngineCore2D.Engine;
-using EngineCore2D.Sprites;
+﻿using KerpEngine.Global;
+using KerpEngine.Engine_2D.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Engine_2D;
 
 namespace BadassTanksXNA.BadAssTanks_Objects
 {
@@ -19,8 +20,18 @@ namespace BadassTanksXNA.BadAssTanks_Objects
         /// <param name="yLocation">The y location to draw the object.</param>
         /// <param name="textureTint">The tint color to use when drawing the object.</param>
         public TitleTextObject2D(CustomSprite sprite, int xLocation, int yLocation, Color textureTint)
-            : base(sprite, xLocation, yLocation, 0.0f, 0.0f, textureTint)
+            : base(sprite, xLocation, yLocation, textureTint)
         {
+        }
+
+        /// <summary>
+        /// Draws the Game Object's sprite to the screen using a GraphicsDevice.
+        /// </summary>
+        /// <param name="device">The GraphicsDevice used to draw the Object.</param>
+        /// <param name="effect">The effect to use to draw the object.</param>
+        public override void Draw(GraphicsDevice device, BasicEffect effect)
+        {
+            base.Draw(device, effect);
         }
 
         /// <summary>

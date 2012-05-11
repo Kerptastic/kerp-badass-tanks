@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using KerpEngine.Engine_2D;
+using KerpEngine.Engine_3D;
 
-namespace EngineCore2D.Engine
+namespace KerpEngine.Global
 {
     /// <summary>
     /// A Game Engine that defines the structure and contains the common components needed
@@ -15,7 +17,7 @@ namespace EngineCore2D.Engine
     /// use the interface provided by those classes - relying on the implementation provided
     /// by the implementing Game class.
     /// </summary>
-    public abstract class GameEngine2D<GameWorldType> : Game
+    public abstract class GameEngine<GameWorldType> : Game
     {
         #region XNA Related Objects
         /// <summary>
@@ -46,18 +48,23 @@ namespace EngineCore2D.Engine
         /// <summary>
         /// 
         /// </summary>
-        protected Texture2DHandler _textureHandler = null;
-        public Texture2DHandler TextureHandler { get { return _textureHandler; } }      
+        protected TextureHandler _textureHandler = null;
+        public TextureHandler TextureHandler { get { return _textureHandler; } }
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ModelHandler _modelHandler = null;
+        public ModelHandler ModelHandler { get { return _modelHandler; } }
         #endregion
 
         /// <summary>
         /// Creates a new GameEngine2D.  This needs to be implemented by a custom
         /// GameEngine and called from the constructor.
         /// </summary>
-        public GameEngine2D()
+        public GameEngine()
         {
-            this._gdManager = new GraphicsDeviceManager(this);
-            this.Content.RootDirectory = "Content";
+            _gdManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
         }
 
         /// <summary>
@@ -67,15 +74,18 @@ namespace EngineCore2D.Engine
         /// </summary>
         protected override void Initialize()
         {
-            //setup the screen and apply the changes
-            this._gdManager.PreferredBackBufferWidth = 800;
-            this._gdManager.PreferredBackBufferHeight = 600;
-            this._gdManager.IsFullScreen = false;
-            this._gdManager.ApplyChanges();
+            this.IsFixedTimeStep = false;
 
-            this._camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector2(0, 0));
+            //setup the screen and apply the changes
+            _gdManager.PreferredBackBufferWidth = 800;
+            _gdManager.PreferredBackBufferHeight = 600;
+            _gdManager.IsFullScreen = false;
+            //_gdManager.SynchronizeWithVerticalRetrace = false;
+            _gdManager.ApplyChanges();
+
+            _camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector2(0, 0));
            
-            this.Window.Title = "Bad-Ass Tanks!";
+            Window.Title = "Bad-Ass Tanks!";
 
             base.Initialize();
         }
@@ -96,8 +106,8 @@ namespace EngineCore2D.Engine
         /// </summary>
         protected override void LoadContent()
         {
-            this._spriteBatch = new SpriteBatch(GraphicsDevice);
-            this._graphicsDevice = _gdManager.GraphicsDevice;
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _graphicsDevice = _gdManager.GraphicsDevice;
 
             base.LoadContent();
         }
@@ -122,7 +132,7 @@ namespace EngineCore2D.Engine
         /// <param name="gameTime">The current GameTime.</param>
         protected override void Update(GameTime gameTime)
         {
-            this._camera2d.Update();
+            _camera2d.Update();
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
             {
@@ -426,7 +436,7 @@ namespace EngineCore2D.Engine
         /// </summary>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
 
             base.Draw(gameTime);
 

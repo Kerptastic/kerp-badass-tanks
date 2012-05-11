@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace EngineCore2D.Misc
+namespace KerpEngine.Global
 {
     /// <summary>
     /// Represents a pair of int values.
@@ -89,6 +85,46 @@ namespace EngineCore2D.Misc
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public static Vector3 ClampAngleDegrees(Vector3 degrees)
+        {
+            //clamp the X
+            while (degrees.X < -180)
+            {
+                degrees.X += 360;
+            }
+            while (degrees.X > 180)
+            {
+                degrees.X -= 360;
+            }
+
+            //clamp the Y
+            while (degrees.Y < -180)
+            {
+                degrees.Y += 360;
+            }
+            while (degrees.Y > 180)
+            {
+                degrees.Y -= 360;
+            }
+
+            //clamp the Z
+            while (degrees.Z < -180)
+            {
+                degrees.Z += 360;
+            }
+            while (degrees.Z > 180)
+            {
+                degrees.Z -= 360;
+            }
+
+            return degrees;
+        }
+
+        /// <summary>
         /// Ensure the angle value stays between -Pi and Pi so the numbers
         /// never get so large or small that they break precision or overflow.
         /// </summary>
@@ -106,6 +142,46 @@ namespace EngineCore2D.Misc
             }
 
             return radians;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public static Vector3 ClampAngleRadians(Vector3 degrees)
+        {
+            //clamp the X
+            while (degrees.X < -MathHelper.Pi)
+            {
+                degrees.X += MathHelper.TwoPi;
+            }
+            while (degrees.X > MathHelper.Pi)
+            {
+                degrees.X -= MathHelper.TwoPi;
+            }
+
+            //clamp the Y
+            while (degrees.Y < -MathHelper.Pi)
+            {
+                degrees.Y += MathHelper.TwoPi;
+            }
+            while (degrees.Y > MathHelper.Pi)
+            {
+                degrees.Y -= MathHelper.TwoPi;
+            }
+
+            //clamp the Z
+            while (degrees.Z < -MathHelper.Pi)
+            {
+                degrees.Z += MathHelper.TwoPi;
+            }
+            while (degrees.Z > MathHelper.Pi)
+            {
+                degrees.Z -= MathHelper.TwoPi;
+            }
+
+            return degrees;
         }
 
         /// <summary>

@@ -1,9 +1,8 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
-namespace EngineCore2D.Engine
+namespace KerpEngine.Engine_2D
 {
     /// <summary>
     /// Loads and manages 2D Textures for the Game Engine.
@@ -11,7 +10,7 @@ namespace EngineCore2D.Engine
     /// This class is expected to be implemented by a Custom TextureHandler, 
     /// also requiring the LoadTextures method to be implemented.
     /// </summary>
-    public abstract class Texture2DHandler
+    public abstract class TextureHandler
     {
         /// <summary>
         /// The content manager used to manage the 2D content.
@@ -22,7 +21,7 @@ namespace EngineCore2D.Engine
         /// loading information (primarily for handling what sprites
         /// to load/unload and when).
         /// </summary>
-        protected string textureInitFile;
+        protected string _textureInitFile;
         /// <summary>
         /// The Texture Map holding the sprites to be retrieved when needed.
         /// </summary>
@@ -39,10 +38,10 @@ namespace EngineCore2D.Engine
         /// </summary>
         /// <param name="textureInitFile">The init file of textures to use.</param>
         /// <param name="contentManager">The content manager handling the textures.</param>
-        public Texture2DHandler(string textureInitFile, ContentManager contentManager)
+        public TextureHandler(string textureInitFile, ContentManager contentManager)
         {
-            this.textureInitFile = textureInitFile;
-            this._contentManager = contentManager;
+            _textureInitFile = textureInitFile;
+            _contentManager = contentManager;
 
             this.LoadTextures();
             this.LoadFontTextures();

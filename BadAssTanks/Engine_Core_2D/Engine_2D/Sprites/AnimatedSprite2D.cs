@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace EngineCore2D.Sprites
+namespace KerpEngine.Engine_2D.Sprites
 {
     public class AnimatedSprite2D //: CustomSprite
     {

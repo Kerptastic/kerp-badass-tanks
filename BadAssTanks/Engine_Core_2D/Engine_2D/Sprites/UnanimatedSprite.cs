@@ -1,8 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace EngineCore2D.Sprites
+namespace KerpEngine.Engine_2D.Sprites
 {
     /// <summary>
     /// Represents an Unanimated Sprite that will be drawn to the screen.
@@ -13,13 +12,34 @@ namespace EngineCore2D.Sprites
         /// Creates a new Unanimated Sprite.
         /// </summary>
         /// <param name="texture">The Texture that will be drawn for this Sprite.</param>
-        public UnanimatedSprite(Texture2D texture)
-            : base(texture)
+        /// <param name="width">The width of the sprite before any scaling.</param>
+        /// <param name="height">The height of the sprite before any scaling.</param>
+        public UnanimatedSprite(Texture2D texture, float width, float height)
+            : base(texture, width, height)
         {
         }
 
         /// <summary>
-        /// Draws this Sprite to the Screen.
+        /// Draws the Sprite to the screen using a 3D method of display, thus
+        /// not using a SpriteBatch.
+        /// </summary>
+        /// <param name="device">The GraphicsDevice to perform the drawing.</param>
+        /// <param name="effect">The effect to use while drawing.</param>
+        public override void Draw(GraphicsDevice device, BasicEffect effect)
+        {
+            effect.Texture = _texture;
+            
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+
+                device.DrawUserIndexedPrimitives<VertexPositionNormalTexture>(
+                    PrimitiveType.TriangleList, _vertices, 0, 4, _indices, 0, 2);
+            }
+        }
+
+        /// <summary>
+        /// Draws this Sprite to the Screen using a SpriteBatch.
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
         /// <param name="position">The position to draw the Sprite on the screen.</param>
@@ -36,7 +56,7 @@ namespace EngineCore2D.Sprites
         }
 
         /// <summary>
-        /// Draws this Sprite to the Screen.
+        /// Draws this Sprite to the Screen using a SpriteBatch.
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
         /// <param name="position">The position to draw the Sprite on the screen.</param>
@@ -54,7 +74,7 @@ namespace EngineCore2D.Sprites
         }
 
         /// <summary>
-        /// Draws this Sprite to the Screen.
+        /// Draws this Sprite to the Screen using a SpriteBatch.
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch to perform the drawing.</param>
         /// <param name="position">The position to draw the Sprite on the screen.</param>

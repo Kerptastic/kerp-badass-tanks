@@ -92,18 +92,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Camera2D.cs" />
-    <Compile Include="Engine\GameEngine2D.cs" />
-    <Compile Include="Engine\GameObject2D.cs" />
-    <Compile Include="Engine\GameWorld.cs" />
-    <Compile Include="Engine\QuadTree.cs" />
-    <Compile Include="Misc\Utilities.cs" />
-    <Compile Include="Sprites\AnimatedSprite2D.cs" />
-    <Compile Include="Sprites\CustomSprite.cs" />
-    <Compile Include="Sprites\TextSprite2D.cs" />
-    <Compile Include="Engine\Texture2DHandler.cs" />
+    <Compile Include="Engine_2D\Camera2D.cs" />
+    <Compile Include="Engine_3D\Camera3D.cs" />
+    <Compile Include="Engine_3D\Camera3DFirstPerson.cs" />
+    <Compile Include="Engine_3D\Class1.cs" />
+    <Compile Include="Engine_3D\GameObject3D.cs" />
+    <Compile Include="Global\GameEngine.cs" />
+    <Compile Include="Engine_2D\GameObject2D.cs" />
+    <Compile Include="Global\GameWorld.cs" />
+    <Compile Include="Engine_3D\ModelHandler.cs" />
+    <Compile Include="Engine_2D\QuadTree.cs" />
+    <Compile Include="Global\Utilities.cs" />
+    <Compile Include="Engine_3D\Models\CustomModel.cs" />
+    <Compile Include="Engine_2D\Sprites\AnimatedSprite2D.cs" />
+    <Compile Include="Engine_2D\Sprites\CustomSprite.cs" />
+    <Compile Include="Engine_2D\Sprites\TextSprite2D.cs" />
+    <Compile Include="Engine_2D\TextureHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites\UnanimatedSprite.cs" />
+    <Compile Include="Engine_2D\Sprites\UnanimatedSprite.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

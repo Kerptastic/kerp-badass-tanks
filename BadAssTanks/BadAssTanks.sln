@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadassTanksXNA", "BadassTan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadassTanksXNAContent", "BadassTanksXNA\BadassTanksXNAContent\BadassTanksXNAContent.contentproj", "{51753F01-9111-4C9C-BE29-0E4A3D393C14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineCore2D", "Engine_Core_2D\EngineCore2D.csproj", "{9A4E8805-276A-4406-89D4-6DC1467C5A9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerpEngine_1.0", "Engine_Core_2D\KerpEngine_1.0.csproj", "{9A4E8805-276A-4406-89D4-6DC1467C5A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
-using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Engine_2D.Sprites;
+using KerpEngine.Global;
 using Microsoft.Xna.Framework;
-using EngineCore2D.Sprites;
-using EngineCore2D.Misc;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace EngineCore2D.Engine
+namespace KerpEngine.Engine_2D
 {
     /// <summary>
     /// Represents a drawable, 2D, Game Object.  This class is expected to be
@@ -64,10 +64,8 @@ namespace EngineCore2D.Engine
         /// </summary>
         /// <param name="xLocation">The initial X location of the object on the screen.</param>
         /// <param name="yLocation">The initial Y location of the object on the screen.</param>
-        /// <param name="width">The width of the object.</param>
-        /// <param name="height">The height of the object.</param>
-        public GameObject2D(float xLocation, float yLocation, float width, float height)
-            : this(null, xLocation, yLocation, width, height, Color.White)
+        public GameObject2D(float xLocation, float yLocation)
+            : this(null, xLocation, yLocation, Color.White)
         {
         }
 
@@ -78,11 +76,8 @@ namespace EngineCore2D.Engine
         /// <param name="sprite">The Sprite that will be drawn.</param>
         /// <param name="xLocation">The initial X location of the sprite on the screen.</param>
         /// <param name="yLocation">The initial Y location of the sprite on the screen.</param>
-        /// <param name="width">The width of the object.</param>
-        /// <param name="height">The height of the object.</param>
         /// <param name="textureTint">The color to tint the Sprite when being drawn.</param>
-        public GameObject2D(CustomSprite sprite, float xLocation, float yLocation, 
-            float width, float height, Color textureTint)
+        public GameObject2D(CustomSprite sprite, float xLocation, float yLocation, Color textureTint)
         {
             this._position = new Vector2(xLocation, yLocation);
             this._sprite = sprite;
@@ -91,11 +86,14 @@ namespace EngineCore2D.Engine
             this._rotation = 0.0f;
             this._scale = 1.0f;
 
-            this._boundingRectangle = new Rectangle((int)xLocation, (int)yLocation, (int)width, (int)height);
+            if (_sprite != null)
+            {
+                this._boundingRectangle = new Rectangle((int)xLocation, (int)yLocation, (int)_sprite.Width, (int)_sprite.Height);
+            }
         }
 
         /// <summary>
-        /// Draws the Game Object's sprite to the screen.
+        /// Draws the Game Object's sprite to the screen using a SpriteBatch method.
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch used to draw the Sprite.</param>
         public virtual void Draw(SpriteBatch spriteBatch)  
@@ -103,6 +101,23 @@ namespace EngineCore2D.Engine
             if (_sprite != null)
             {
                 _sprite.Draw(spriteBatch, _position, _rotation, _scale, _textureTint, SpriteEffects.None, 0.0f);
+            }
+        }
+
+        /// <summary>
+        /// Draws the Game Object's sprite to the screen using a GraphicsDevice.
+        /// </summary>
+        /// <param name="device">The GraphicsDevice used to draw the Object.</param>
+        /// <param name="effect">The effect to use to draw the object.</param>
+        public virtual void Draw(GraphicsDevice device, BasicEffect effect)
+        {
+            if (_sprite != null)
+            {
+                effect.World = Matrix.CreateRotationZ(_rotation) * 
+                               Matrix.CreateScale(_scale) * 
+                               Matrix.CreateTranslation(_position.X, _position.Y, 0.0f);
+
+                _sprite.Draw(device, effect);
             }
         }
 
@@ -155,21 +170,5 @@ namespace EngineCore2D.Engine
         {
             this._textureTint = newTintColor;
         }
-
-
-        //public abstract void Destroy();
-        //public abstract bool IsDestroyed();
-        //public abstract bool ReadyToFire();
-
-        //public abstract void RotateGundam(float angle);
-
-        //public abstract ArrayList FireWeapon(String weaponName);
-
-        //public abstract BoundingShape2D GetBoundingShape();
-
-
-        //public abstract bool ReduceHealth(float value);
-        //public abstract int GetCrashDamage();
-        //public abstract long GetPointValue();
     }
 }

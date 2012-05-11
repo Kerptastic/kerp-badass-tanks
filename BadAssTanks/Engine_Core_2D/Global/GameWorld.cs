@@ -1,10 +1,10 @@
-using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Engine_2D.Sprites;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Engine_2D;
+using KerpEngine.Engine_3D;
 
-using EngineCore2D.Sprites;
-using Engine_Core_2D.Engine;
-
-namespace EngineCore2D.Engine
+namespace KerpEngine.Global
 {
     /// <summary>
     /// 
@@ -16,8 +16,14 @@ namespace EngineCore2D.Engine
         /// <summary>
         /// 
         /// </summary>
-        protected Texture2DHandler _textureHandler;
-        public Texture2DHandler TextureHandler { get { return _textureHandler; } }
+        protected TextureHandler _textureHandler;
+        public TextureHandler TextureHandler { get { return _textureHandler; } }
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ModelHandler _modelHandler = null;
+        public ModelHandler ModelHandler { get { return _modelHandler; } }
+
 
         /// <summary>
         /// 
@@ -25,17 +31,20 @@ namespace EngineCore2D.Engine
         protected QuadTree _quadTree;
         public QuadTree QuadTree { get { return _quadTree; } }
 
-        public GameWorld(Texture2DHandler textureHandler, Viewport viewport)
+        public GameWorld(TextureHandler textureHandler, ModelHandler modelHandler, Viewport viewport)
         {
-            this._textureHandler = textureHandler;
-            this._viewport = viewport;
+            _textureHandler = textureHandler;
+            _modelHandler = modelHandler;
+            _viewport = viewport;
 
-            this._quadTree = new QuadTree(new UnanimatedSprite(_textureHandler.GetTexture("whitePixel")),
+            _quadTree = new QuadTree(new UnanimatedSprite(_textureHandler.GetTexture("whitePixel"), 1.0f, 0.0f),
                0, 0, viewport.Width, viewport.Height); 
         }
 
         public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+        public abstract void Draw(GraphicsDevice device, BasicEffect effect, Matrix viewMatrix, Matrix projectionMatrix, GameTime gameTime);
 
+        #region BadAssTanks World Code
         //public enum WorldObjectType
         //{
         //    TANKMUNITION, ENEMY, ENEMYMUNITION, EXPLOSION,
@@ -1128,5 +1137,7 @@ namespace EngineCore2D.Engine
         //        m_bossBot = null;
         //    }
         //}
+
+        #endregion
     }
 }

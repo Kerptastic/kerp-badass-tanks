@@ -1,36 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using KerpEngine.Global;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using EngineCore2D.Misc;
 
-namespace EngineCore2D.Engine
+namespace KerpEngine.Engine_2D
 {
     /// <summary>
-    /// 
+    /// A 2D Camera implementation that only moves in the X/Y directions.
     /// </summary>
     public class Camera2D : GameObject2D
     {
-        /// <summary>
-        /// The amount of zoom this camera is currently zoomed into.
-        /// </summary>
-        protected float _zoom;
-        public float ZoomAmount { get { return _zoom; } set { _zoom = value; } }
-        /// <summary>
-        /// The aspect ratio of the camera, computed from the Viewport.
-        /// </summary>
-        protected float _aspectRatio;
-        public float AspectRatio { get { return _aspectRatio; } set { _aspectRatio = value; } }
-      
         /// <summary>
         /// The View matrix, which contains the scale, rotation, and translation matrix
         /// which will position the camera for viewing.
         /// </summary>
         protected Matrix _view;
         public Matrix View { get { return _view; } }
+
         /// <summary>
         /// If this object is set in the constructor, the camera will 
         /// clamp its movement to follow this object.
@@ -42,11 +27,24 @@ namespace EngineCore2D.Engine
         /// </summary>
         protected float _targetMovementCushion;
         public float TargetMovementCushion;
+
+        /// <summary>
+        /// The amount of zoom this camera is currently zoomed into.
+        /// </summary>
+        protected float _zoom;
+        public float ZoomAmount { get { return _zoom; } set { _zoom = value; } }
+        /// <summary>
+        /// The aspect ratio of the camera, computed from the Viewport.
+        /// </summary>
+        protected float _aspectRatio;
+        public float AspectRatio { get { return _aspectRatio; } set { _aspectRatio = value; } }
+     
         /// <summary>
         /// The Graphics Device viewport that this camera will be bounded to.
         /// Essentially, the width and height of the viewing area.
         /// </summary>
         protected Viewport _viewport;
+
 
         /// <summary>
         /// Creates a new 2D Camera that will not be clamped to a Game Object.
@@ -66,17 +64,17 @@ namespace EngineCore2D.Engine
         /// <param name="objectToFollow">The instance of a Game Object to follow.</param>
         /// <param name="targetMovementCushion">The amount of freedom the following object has to move before the camera begins to follow.</param>
         public Camera2D(Viewport viewport, Vector2 position, GameObject2D objectToFollow, float targetMovementCushion)
-            : base(position.X, position.Y, 0.0f, 0.0f)
+            : base((float)position.X, (float)position.Y)
         {
-            this._viewport = viewport;
-            this._position = position;
-            this._targetMovementCushion = targetMovementCushion;
+            _viewport = viewport;
+            _position = position;
+            _targetMovementCushion = targetMovementCushion;
 
-            this._zoom = 1.0f;
-            this._rotation = 0.0f;
+            _zoom = 1.0f;
+            _rotation = 0.0f;
 
-            this._aspectRatio = (float)this._viewport.Width / (float)this._viewport.Height;
-            this._targetObjectToFollow = objectToFollow;
+            _aspectRatio = viewport.AspectRatio;
+            _targetObjectToFollow = objectToFollow;
 
             this.Update();
         }
@@ -89,11 +87,11 @@ namespace EngineCore2D.Engine
             this.UpdatePosition();
 
             //Clamp rotation value
-            this._rotation = Utilities.ClampAngleDegrees(this._rotation);
+            _rotation = Utilities.ClampAngleDegrees(this._rotation);
 
             //setup the view, always rotate and scale first, then move
             //to ensure the scales and rotations happen around the origin.
-            this._view = Matrix.CreateRotationZ(MathHelper.ToRadians(_rotation)) *
+            _view = Matrix.CreateRotationZ(MathHelper.ToRadians(_rotation)) *
                          Matrix.CreateScale(new Vector3(this._zoom, this._zoom, 1)) *
                          Matrix.CreateTranslation(this._position.X, this._position.Y, 0);
         }
@@ -110,10 +108,10 @@ namespace EngineCore2D.Engine
             // Right now, the camera, if there is an object specified,
             // is locked to the target
 
-            if (this._targetObjectToFollow != null)
+            if (_targetObjectToFollow != null)
             {
-                this._position.X = this._targetObjectToFollow.X;
-                this._position.Y = this._targetObjectToFollow.Y;
+                _position.X = _targetObjectToFollow.X;
+                _position.Y = _targetObjectToFollow.Y;
             }
         }
 
@@ -124,7 +122,7 @@ namespace EngineCore2D.Engine
         /// <param name="amount">The amount to zoom the camera.</param>
         public void Zoom(float amount)
         {
-            this._zoom += amount;
+            _zoom += amount;
         }
     }
 }

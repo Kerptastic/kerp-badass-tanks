@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using EngineCore2D.Engine;
-using EngineCore2D.Sprites;
-using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Engine_2D.Sprites;
+using KerpEngine.Global;
 using Microsoft.Xna.Framework;
-using EngineCore2D.Misc;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace Engine_Core_2D.Engine
+namespace KerpEngine.Engine_2D
 {
     /// <summary>
     /// 
@@ -38,7 +37,7 @@ namespace Engine_Core_2D.Engine
         /// <param name="width"></param>
         /// <param name="height"></param>
         public QuadTree(CustomSprite sprite, int xLocation, int yLocation, int width, int height)
-            : base(sprite, xLocation, yLocation, width, height, Color.White)
+            : base(sprite, (float)xLocation, (float)yLocation, Color.White)
         {
             _objects = new List<GameObject2D>();
             _childNodes = null;

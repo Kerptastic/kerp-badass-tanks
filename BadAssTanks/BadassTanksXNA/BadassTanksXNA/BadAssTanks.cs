@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using EngineCore2D.Engine;
+using KerpEngine.Global;
 using BadassTanksXNA.BadAssTanks_World;
 using BadassTanksXNA.Utility;
 
@@ -18,7 +18,7 @@ namespace BadassTanksXNA
         [STAThread]
         static void Main()
         {
-            using (GameEngine2D<BadAssTanksWorld> gameEngine = new BadAssTanksGameEngine())
+            using (GameEngine<BadAssTanksWorld> gameEngine = new BadAssTanksGameEngine())
             {
                 gameEngine.Run();
             }
