@@ -101,6 +101,8 @@
     <Compile Include="Global\GameWorld.cs" />
     <Compile Include="Engine_3D\ModelHandler.cs" />
     <Compile Include="Engine_2D\QuadTree.cs" />
+    <Compile Include="Global\Input\KeyboardHandler.cs" />
+    <Compile Include="Global\Input\MouseHandler.cs" />
     <Compile Include="Global\Utilities.cs" />
     <Compile Include="Engine_3D\Models\CustomModel.cs" />
     <Compile Include="Engine_2D\Sprites\AnimatedSprite2D.cs" />

@@ -133,7 +133,6 @@
     <Compile Include="Utility\BadAssTanksTextureHandler.cs" />
     <Compile Include="Utility\BoundingShape2D.cs" />
     <Compile Include="Utility\CollisionHandler.cs" />
-    <Compile Include="Utility\GameTimer.cs" />
     <Compile Include="Utility\TrigHandler.cs" />
     <Compile Include="Utility\Vector.cs" />
     <Compile Include="BadAssTanks_World\EnemyFactory.cs" />
