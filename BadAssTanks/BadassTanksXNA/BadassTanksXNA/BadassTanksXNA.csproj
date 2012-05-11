@@ -127,8 +127,6 @@
     <Compile Include="BadAssTanks_Objects\Turret.cs" />
     <Compile Include="BadAssTanks_Objects\Upgrade.cs" />
     <Compile Include="BadAssTanks_World\BadAssTanksWorld.cs" />
-    <Compile Include="Input\KeyboardHandler.cs" />
-    <Compile Include="Input\MouseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\AudioHandler.cs" />
     <Compile Include="Utility\BadAssTanksModelHandler.cs" />
