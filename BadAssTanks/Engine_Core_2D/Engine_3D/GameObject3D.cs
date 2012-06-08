@@ -1,6 +1,7 @@
 using KerpEngine.Engine_3D.Models;
 using KerpEngine.Global;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace KerpEngine.Engine_3D
 {
@@ -51,7 +52,13 @@ namespace KerpEngine.Engine_3D
         /// </summary>
         protected float _moveSpeed = 1.0f;
         public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
-       
+        /// <summary>
+        /// The bounding shape around this object.
+        /// </summary>
+        protected BoundingVolume _boundingVolume;
+        public BoundingVolume BoundingVolume { get { return _boundingVolume; } set { _boundingVolume = value; } }
+
+
         /// <summary>
         /// Default constructor which just represents an object in the game
         /// that isnt drawn to the screen, but still has a location within 
@@ -70,7 +77,7 @@ namespace KerpEngine.Engine_3D
         /// </summary>
         /// <param name="viewMatrix"></param>
         /// <param name="projectionMatrix"></param>
-        public virtual void Draw(Matrix viewMatrix, Matrix projectionMatrix) 
+        public virtual void Draw(GraphicsDevice graphicsDevice, BasicEffect effect, Matrix viewMatrix, Matrix projectionMatrix) 
         {
             Matrix worldMatrix = Matrix.CreateScale(_scale) * 
                                  Matrix.CreateRotationX(_rotation.X) *
@@ -79,6 +86,7 @@ namespace KerpEngine.Engine_3D
                                  Matrix.CreateTranslation(_position);
 
             _model.Draw(worldMatrix, viewMatrix, projectionMatrix);
+            _boundingVolume.Draw(graphicsDevice, effect);
         }
 
         /// <summary>

@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Engine_Core_2D</RootNamespace>
-    <AssemblyName>Engine_Core_2D</AssemblyName>
+    <RootNamespace>KerpEngine</RootNamespace>
+    <AssemblyName>KerpEngine</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
@@ -92,17 +92,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global\AABB.cs" />
     <Compile Include="Engine_2D\Camera2D.cs" />
     <Compile Include="Engine_3D\Camera3D.cs" />
     <Compile Include="Engine_3D\Camera3DFirstPerson.cs" />
     <Compile Include="Engine_3D\GameObject3D.cs" />
+    <Compile Include="Global\BoundingVolume.cs" />
+    <Compile Include="Global\Octree.cs" />
     <Compile Include="Global\GameEngine.cs" />
     <Compile Include="Engine_2D\GameObject2D.cs" />
     <Compile Include="Global\GameWorld.cs" />
     <Compile Include="Engine_3D\ModelHandler.cs" />
-    <Compile Include="Engine_2D\QuadTree.cs" />
+    <Compile Include="Global\QuadTree.cs" />
     <Compile Include="Global\Input\KeyboardHandler.cs" />
     <Compile Include="Global\Input\MouseHandler.cs" />
+    <Compile Include="Global\SpatialStructure.cs" />
     <Compile Include="Global\Utilities.cs" />
     <Compile Include="Engine_3D\Models\CustomModel.cs" />
     <Compile Include="Engine_2D\Sprites\AnimatedSprite2D.cs" />

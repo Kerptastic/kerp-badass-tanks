@@ -133,19 +133,19 @@ namespace BadassTanksXNA
             quadEffect.EnableDefaultLighting();
             quadEffect.View = cam3D.View;
             quadEffect.Projection = cam3D.Projection;
-            quadEffect.TextureEnabled = true;
 
-            //_spriteBatch.Begin(SpriteSortMode.Deferred,
-            //                   BlendState.AlphaBlend,
-            //                   null, null, null, null,
-            //                   _camera2d.View);
-
-            //_gameWorld.Draw(_spriteBatch, gameTime);
-
-            //_spriteBatch.End();
+            _spriteBatch.Begin(SpriteSortMode.Deferred,
+                               BlendState.AlphaBlend,
+                               null, null, null, null,
+                               _camera2d.View);
 
             this.DrawText();
+            _gameWorld.Draw(_spriteBatch, gameTime);
 
+
+            _spriteBatch.End();
+
+            
             _gameWorld.Draw(_graphicsDevice, quadEffect, cam3D.View, cam3D.Projection, gameTime);
         }
 
@@ -164,15 +164,8 @@ namespace BadassTanksXNA
                 cam3D.Yaw.ToString("f2"),
                 cam3D.Pitch.ToString("f2"));
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred,
-                               BlendState.AlphaBlend,
-                               null, null, null, null,
-                               _camera2d.View);
-
             ((TextObject2D)_gameWorld.TextObject).SetText(buffer.ToString());
             _gameWorld.TextObject.Draw(_spriteBatch);
-
-            _spriteBatch.End();
         }
     }
 }

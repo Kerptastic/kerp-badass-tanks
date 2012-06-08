@@ -32,8 +32,8 @@ namespace KerpEngine.Engine_2D
         /// The current position of this object.
         /// </summary>
         protected Vector2 _position;
-        public float X { get { return _position.X; } set { _position.X = value; _boundingRectangle.X = (int)value; } }
-        public float Y { get { return _position.Y; } set { _position.Y = value; _boundingRectangle.Y = (int)value; } }
+        public float X { get { return _position.X; } set { _position.X = value; } } //_boundingVolume.Volume = new Rectangle((int)value, _boundingVolume.Volume.Y, _boundingVolume.Volume.Width, _boundingVolume.Volume.Height); } }
+        public float Y { get { return _position.Y; } set { _position.Y = value; } } // _boundingVolume.Volume = new Rectangle(_boundingVolume.Volume.X, (int)value, _boundingVolume.Volume.Width, _boundingVolume.Volume.Height); } }
         public Vector2 Position { get { return _position; } set { _position = value; } }
         /// <summary>
         /// The current rotation angle of this object.
@@ -51,11 +51,11 @@ namespace KerpEngine.Engine_2D
         protected float _moveSpeed = 1.0f;
         public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
         /// <summary>
-        /// The bounding rectangle around this game object. Used for collision detection
-        /// and quad tree placement.
+        /// The bounding shape around this object.
         /// </summary>
-        protected Rectangle _boundingRectangle;
-        public Rectangle BoundingRectangle { get { return _boundingRectangle; } }
+        protected BoundingVolume _boundingVolume;
+        public BoundingVolume BoundingVolume { get { return _boundingVolume; } set { _boundingVolume = value; } }
+
 
         /// <summary>
         /// Default constructor which just represents an object in the game
@@ -88,7 +88,11 @@ namespace KerpEngine.Engine_2D
 
             if (_sprite != null)
             {
-                this._boundingRectangle = new Rectangle((int)xLocation, (int)yLocation, (int)_sprite.Width, (int)_sprite.Height);
+                //_boundingVolume = new AABB(new Vector3(xLocation, yLocation, 0.0f), 
+                    //new Vector3(xLocation + _sprite.Width, yLocation + _sprite.Height, 0.0f));
+
+                //create a bounding volume giving the location of the center, width and height
+                _boundingVolume = new AABB(new Vector3(xLocation, yLocation, 0.0f), _sprite.Width, _sprite.Height);
             }
         }
 

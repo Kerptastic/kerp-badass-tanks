@@ -179,7 +179,7 @@ namespace KerpEngine.Engine_2D.Sprites
     //    }
 
     //    /// <summary>
-    //    /// Recreates the vertex buffer for the sprite when it is initially created
+    //    /// Recreates the Vector3 buffer for the sprite when it is initially created
     //    /// or when the device is destroyed.
     //    /// </summary>
     //    /// <param name="sender"></param>

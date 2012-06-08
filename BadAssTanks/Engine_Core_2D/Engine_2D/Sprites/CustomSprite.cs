@@ -62,22 +62,22 @@ namespace KerpEngine.Engine_2D.Sprites
             //the normal is facing the camera, with -Z pointing out of the screen
             Vector3 normal = new Vector3(0.0f, 0.0f, -1.0f);
 
-            //setup upper left vertex
+            //setup upper left Vector3
             _vertices[0].Position = new Vector3(-_width / 2.0f, _height / 2.0f, 0.0f);
             _vertices[0].TextureCoordinate = new Vector2(0.0f, 0.0f);
             _vertices[0].Normal = normal;
 
-            //setup upper right vertex
+            //setup upper right Vector3
             _vertices[1].Position = new Vector3(_width / 2.0f, _height / 2.0f, 0.0f);
             _vertices[1].TextureCoordinate = new Vector2(1.0f, 0.0f);
             _vertices[1].Normal = normal;
 
-            //setup lower left vertex
+            //setup lower left Vector3
             _vertices[2].Position = new Vector3(-_width / 2.0f, -_height / 2.0f, 0.0f);
             _vertices[2].TextureCoordinate = new Vector2(0.0f, 1.0f);
             _vertices[2].Normal = normal;
 
-            //setup lower right vertex
+            //setup lower right Vector3
             _vertices[3].Position = new Vector3(_width / 2.0f, -_height / 2.0f, 0.0f);
             _vertices[3].TextureCoordinate = new Vector2(1.0f, 1.0f);
             _vertices[3].Normal = normal;

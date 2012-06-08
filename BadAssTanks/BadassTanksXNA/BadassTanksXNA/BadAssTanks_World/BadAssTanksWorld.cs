@@ -66,13 +66,14 @@ namespace BadassTanksXNA.BadAssTanks_World
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            _quadTree.Draw(spriteBatch);
             //obj2.Draw(spriteBatch);           
         }
 
         public override void Draw(GraphicsDevice device, BasicEffect effect, Matrix viewMatrix, Matrix projectionMatrix, GameTime gameTime)
         {
             obj1.Draw(device, effect);
-            obj3.Draw(viewMatrix, projectionMatrix);   
+            obj3.Draw(device, effect, viewMatrix, projectionMatrix);   
         }
     }
 }

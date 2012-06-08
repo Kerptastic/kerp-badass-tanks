@@ -28,7 +28,9 @@ namespace KerpEngine.Engine_2D.Sprites
         public override void Draw(GraphicsDevice device, BasicEffect effect)
         {
             effect.Texture = _texture;
-            
+            effect.TextureEnabled = true;
+            effect.VertexColorEnabled = false;
+
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
