@@ -51,7 +51,7 @@ namespace KerpEngine.Engine_2D
         /// </summary>
         /// <param name="viewport">The viewport displaying the game sprites.</param>
         /// <param name="position">The initial position for the camera.</param>
-        public Camera2D(Viewport viewport, Vector2 position)
+        public Camera2D(Viewport viewport, Vector3 position)
             : this(viewport, position, null, 0.0f)
         {
         }
@@ -63,7 +63,7 @@ namespace KerpEngine.Engine_2D
         /// <param name="position">The initial position for the camera.</param>
         /// <param name="objectToFollow">The instance of a Game Object to follow.</param>
         /// <param name="targetMovementCushion">The amount of freedom the following object has to move before the camera begins to follow.</param>
-        public Camera2D(Viewport viewport, Vector2 position, GameObject2D objectToFollow, float targetMovementCushion)
+        public Camera2D(Viewport viewport, Vector3 position, GameObject2D objectToFollow, float targetMovementCushion)
             : base((float)position.X, (float)position.Y)
         {
             _viewport = viewport;
@@ -71,7 +71,7 @@ namespace KerpEngine.Engine_2D
             _targetMovementCushion = targetMovementCushion;
 
             _zoom = 1.0f;
-            _rotation = 0.0f;
+            _rotation = new Vector3(0.0f, 0.0f, 0.0f);
 
             _aspectRatio = viewport.AspectRatio;
             _targetObjectToFollow = objectToFollow;
@@ -91,7 +91,7 @@ namespace KerpEngine.Engine_2D
 
             //setup the view, always rotate and scale first, then move
             //to ensure the scales and rotations happen around the origin.
-            _view = Matrix.CreateRotationZ(MathHelper.ToRadians(_rotation)) *
+            _view = Matrix.CreateRotationZ(MathHelper.ToRadians(_rotation.Z)) *
                          Matrix.CreateScale(new Vector3(this._zoom, this._zoom, 1)) *
                          Matrix.CreateTranslation(this._position.X, this._position.Y, 0);
         }

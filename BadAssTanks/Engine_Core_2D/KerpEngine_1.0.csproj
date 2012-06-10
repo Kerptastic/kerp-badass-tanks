@@ -98,6 +98,8 @@
     <Compile Include="Engine_3D\Camera3DFirstPerson.cs" />
     <Compile Include="Engine_3D\GameObject3D.cs" />
     <Compile Include="Global\BoundingVolume.cs" />
+    <Compile Include="Global\GameObject.cs" />
+    <Compile Include="Global\Input\ControllerHandler.cs" />
     <Compile Include="Global\Octree.cs" />
     <Compile Include="Global\GameEngine.cs" />
     <Compile Include="Engine_2D\GameObject2D.cs" />
@@ -119,6 +121,12 @@
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)$(OutDir)$(TargetFileName)" "E:\Code Files\"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>del "E:\Code Files\KerpEngine.dll"</PreBuildEvent>
+  </PropertyGroup>
   <!--
       To modify your build process, add your task inside one of the targets below and uncomment it. 
       Other similar extension points exist, see Microsoft.Common.targets.

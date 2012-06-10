@@ -50,10 +50,10 @@ namespace KerpEngine.Engine_2D.Sprites
         /// <param name="textureTint">The tint to draw the Sprite.</param>
         /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
         /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
-        public override void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale, 
+        public override void Draw(SpriteBatch spriteBatch, Vector3 position, float rotation, float scale, 
             Color textureTint, SpriteEffects effects, float layerDepth)
         {
-            this.Draw(spriteBatch, position, new Vector2(0, 0), rotation, scale, textureTint,
+            this.Draw(spriteBatch, position, new Vector3(0.0f, 0.0f, 0.0f), rotation, scale, textureTint,
                 effects, layerDepth);
         }
 
@@ -68,7 +68,7 @@ namespace KerpEngine.Engine_2D.Sprites
         /// <param name="textureTint">The tint to draw the Sprite.</param>
         /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
         /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
-        public override void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, 
+        public override void Draw(SpriteBatch spriteBatch, Vector3 position, Vector3 rotationOrigin, 
             float rotation, float scale, Color textureTint, SpriteEffects effects, float layerDepth)
         {
             this.Draw(spriteBatch, position, rotationOrigin, rotation, scale, null, textureTint, 
@@ -87,10 +87,10 @@ namespace KerpEngine.Engine_2D.Sprites
         /// <param name="textureTint">The tint to draw the Sprite.</param>
         /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
         /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
-        public override void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, float rotation,
+        public override void Draw(SpriteBatch spriteBatch, Vector3 position, Vector3 rotationOrigin, float rotation,
              float scale, Rectangle? sourceRectangle, Color textureTint, SpriteEffects effects, float layerDepth)
         {
-            spriteBatch.Draw(_texture, position, sourceRectangle, textureTint, rotation, rotationOrigin,
+            spriteBatch.Draw(_texture, new Vector2(position.X, position.Y), sourceRectangle, textureTint, rotation, new Vector2(rotationOrigin.X, rotationOrigin.Y),
                 scale, effects, layerDepth);
         }
     }

@@ -37,7 +37,8 @@ namespace KerpEngine.Global
             _modelHandler = modelHandler;
             _viewport = viewport;
 
-            _quadTree = new QuadTree(new UnanimatedSprite(_textureHandler.GetTexture("whitePixel"), 1, 1), 0, 0, viewport.Width, viewport.Height); 
+            _quadTree = new QuadTree(0, 0, 20, 20);
+            _quadTree.Divide();
         }
 
         public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);

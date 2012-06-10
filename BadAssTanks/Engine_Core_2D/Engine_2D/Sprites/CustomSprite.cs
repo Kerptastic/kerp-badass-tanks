@@ -116,7 +116,7 @@ namespace KerpEngine.Engine_2D.Sprites
         /// <param name="textureTint">The tint to draw the Sprite.</param>
         /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
         /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
-        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, float rotation, float scale,
+        public abstract void Draw(SpriteBatch spriteBatch, Vector3 position, float rotation, float scale,
             Color textureTint, SpriteEffects effects, float layerDepth);
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace KerpEngine.Engine_2D.Sprites
         /// <param name="textureTint">The tint to draw the Sprite.</param>
         /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
         /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
-        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, float rotation,
+        public abstract void Draw(SpriteBatch spriteBatch, Vector3 position, Vector3 rotationOrigin, float rotation,
             float scale, Color textureTint, SpriteEffects effects, float layerDepth);
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace KerpEngine.Engine_2D.Sprites
         /// <param name="textureTint">The tint to draw the Sprite.</param>
         /// <param name="effects">The SpriteEffects to draw with the Sprite.</param>
         /// <param name="layerDepth">The layer at which to draw the Sprite.</param>
-        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 rotationOrigin, float rotation, 
+        public abstract void Draw(SpriteBatch spriteBatch, Vector3 position, Vector3 rotationOrigin, float rotation, 
             float scale, Rectangle? sourceRectangle, Color textureTint,  SpriteEffects effects, float layerDepth);
     }
 }

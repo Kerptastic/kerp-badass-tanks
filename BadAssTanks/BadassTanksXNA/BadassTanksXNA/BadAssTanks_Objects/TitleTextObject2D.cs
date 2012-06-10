@@ -42,7 +42,7 @@ namespace BadassTanksXNA.BadAssTanks_Objects
         {
             if (_sprite != null)
             {
-                _sprite.Draw(spriteBatch, _position, _rotation, _scale, _textureTint, SpriteEffects.None, 0.0f);
+                _sprite.Draw(spriteBatch, _position, _rotation.Z, _scale.X, _textureTint, SpriteEffects.None, 0.0f);
             }
         }
     }

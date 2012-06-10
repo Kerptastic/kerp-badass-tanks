@@ -31,7 +31,7 @@ namespace BadassTanksXNA.BadAssTanks_World
             : base(textureHandler, modelHandler, viewport)
         {
             obj1 = new TitleTextObject2D(new UnanimatedSprite(_textureHandler.GetTexture("bad"), 1, 1), 0, 0, Color.White);
-            obj1.ScaleValue = 0.4f;
+            obj1.ScaleValue = new Vector3(0.4f, 0.4f, 0.4f);
             
             obj2 = new TextObject2D(new TextSprite(_textureHandler.GetFontTexture("courierNew"), "Hello World"), 220, 50, Color.White);
 
@@ -66,12 +66,13 @@ namespace BadassTanksXNA.BadAssTanks_World
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _quadTree.Draw(spriteBatch);
+            
             //obj2.Draw(spriteBatch);           
         }
 
         public override void Draw(GraphicsDevice device, BasicEffect effect, Matrix viewMatrix, Matrix projectionMatrix, GameTime gameTime)
         {
+            _quadTree.Draw(device, effect);
             obj1.Draw(device, effect);
             obj3.Draw(device, effect, viewMatrix, projectionMatrix);   
         }

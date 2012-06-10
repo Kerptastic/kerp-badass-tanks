@@ -83,7 +83,7 @@ namespace KerpEngine.Global
             //_gdManager.SynchronizeWithVerticalRetrace = false;
             _gdManager.ApplyChanges();
 
-            _camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector2(0, 0));
+            _camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector3(0.0f,0.0f, 0.0f));
            
             Window.Title = "Bad-Ass Tanks!";
 

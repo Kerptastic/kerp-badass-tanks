@@ -29,6 +29,29 @@ namespace KerpEngine.Global
         /// </summary>
         private Vector3 _bottomLeft;
         public Vector3 BottomLeft { get { return _bottomLeft; } }
+        /// <summary>
+        /// Returns the X location of the AABB.
+        /// </summary>
+        public float X { get { return _position.X; } }
+        /// <summary>
+        /// Returns the Y location of the AABB.
+        /// </summary>
+        public float Y { get { return _position.Y; } }
+        /// <summary>
+        /// Returns the Z location of the AABB.
+        /// </summary>
+        public float Z { get { return _position.Z; } }
+        /// <summary>
+        /// Returns the width of the AABB.
+        /// </summary>
+        private float _width;
+        public float Width { get { return _width; } }
+        /// <summary>
+        /// Returns the height of the AABB.
+        /// </summary>
+        private float _height;
+        public float Height { get { return _height; } }
+
 
         /// <summary>
         /// The vertices representing the front face of the AABB when drawn.
@@ -88,6 +111,9 @@ namespace KerpEngine.Global
             _topRight = topRight;
             _bottomLeft = bottomLeft;
 
+            _width = Math.Abs(topRight.X - bottomLeft.X);
+            _height = Math.Abs(topRight.Y - bottomLeft.Y);
+
             _frontFace = new VertexPositionColor[5];
             _backFace = new VertexPositionColor[5];
             _leftFace = new VertexPositionColor[5];
@@ -115,11 +141,11 @@ namespace KerpEngine.Global
             this.UpdatePointsList();
         }
 
-        ///// <summary>
-        ///// Checks to see if the given Bounding Volume is contained within this Bounding Volume.
-        ///// </summary>
-        ///// <param name="other">The Bounding Volume to see if is contained within this Bounding Volume.</param>
-        ///// <returns>Whether or not the given Bounding Volume is contained within this Bounding Volume.</returns>
+        /// <summary>
+        /// Checks to see if the given Bounding Volume is contained within this Bounding Volume.
+        /// </summary>
+        /// <param name="other">The Bounding Volume to see if is contained within this Bounding Volume.</param>
+        /// <returns>Whether or not the given Bounding Volume is contained within this Bounding Volume.</returns>
         public bool Contains(BoundingVolume other)
         {
             if (other is AABB)
