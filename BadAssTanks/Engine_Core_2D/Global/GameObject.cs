@@ -1,10 +1,8 @@
-﻿
+﻿using Microsoft.Xna.Framework;
 
-
-using Microsoft.Xna.Framework;
 namespace KerpEngine.Global
 {
-    public class GameObject
+    public abstract class GameObject
     {
         /// <summary>
         /// The tint color to use when drawing the Model. By default, will
@@ -16,23 +14,38 @@ namespace KerpEngine.Global
         /// The current position of this object.
         /// </summary>
         protected Vector3 _position;
-        public Vector3 Position { get { return _position; } set { _position = value; } }
-        public float X { get { return _position.X; } set { _position.X = value; } }//_boundingRectangle.X = (int)value; } }
-        public float Y { get { return _position.Y; } set { _position.Y = value; } }//_boundingRectangle.Y = (int)value; } }
+        public virtual Vector3 Position { get { return _position; } set { _position = value; if (_boundingVolume != null) { _boundingVolume.Position = value; } } }
+        public float X { get { return _position.X; } set { _position.X = value; if (_boundingVolume != null) { _boundingVolume.X = (int)value; } } }
+        public float Y { get { return _position.Y; } set { _position.Y = value; if (_boundingVolume != null) { _boundingVolume.Y = (int)value; } } }
+        /// <summary>
+        /// The direction the object is currently looking at.
+        /// </summary>
+        protected Vector3 _lookAt = Vector3.Forward;
+        public Vector3 LookAt { get { return _lookAt; } set { _lookAt = value; } }
+        /// <summary>
+        /// The reference look at vector to be used when calculating
+        /// movement.
+        /// </summary>
+        protected Vector3 _referenceLookAt = new Vector3(0.0f, 0.0f, 1.0f);
+        /// <summary>
+        /// The Quaternion representing the current orientation.
+        /// </summary>
+        protected Quaternion _orientation = Quaternion.Identity;
+        public Quaternion Orientation { get { return _orientation; } set { _orientation = value; } }
         /// <summary>
         /// The current rotation angle of this object.
         /// </summary>
         protected Vector3 _rotation;
-        public Vector3 Rotation { get { return _rotation; } set { this._rotation = Utilities.ClampAngleDegrees(value); } }
+        public virtual Vector3 Rotation { get { return _rotation; } set { this._rotation = Utilities.ClampAngleDegrees(value); } }
         /// <summary>
         /// The current scale factor of this object.
         /// </summary>
         protected Vector3 _scale;
-        public Vector3 ScaleValue { get { return _scale; } set { _scale = value; } }
+        public virtual Vector3 ScaleValue { get { return _scale; } set { _scale = value; if (_boundingVolume != null) { _boundingVolume.ScaleValue = value; } } }
         /// <summary>
         /// The speed at which this object moves in a particular direction.
         /// </summary>
-        protected float _moveSpeed = 1.0f;
+        protected float _moveSpeed = 0.05f;
         public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
         /// <summary>
         /// The bounding shape around this object.
@@ -45,21 +58,26 @@ namespace KerpEngine.Global
         /// Moves an object in the given direction by the default move speed
         /// for this object.
         /// </summary>
-        /// <param name="direction">The direction to move the object.</param>
-        public virtual void Move(Vector3 direction)
+        /// <param name="direction">The amount to move the object. This should be a unit Vector.</param>
+        public virtual void Move(Vector3 amount)
         {
-            this.Move(direction, _moveSpeed);
-        }
+            amount = (amount * MoveSpeed);
 
-        /// <summary>
-        /// Moves an object in the given direction, while overriding the default
-        /// move speed for the object, and replacing it with the given moveSpeed.
-        /// </summary>
-        /// <param name="direction">The direction to move the object.</param>
-        /// <param name="moveSpeed">The magnitude to move the object in the given direction.</param>
-        public virtual void Move(Vector3 direction, float moveSpeed)
-        {
-            this._position += (direction * moveSpeed);
+            Matrix forwardMovement = Matrix.CreateFromQuaternion(_orientation);
+
+            //transform the amount vector on the rotation matrix to get the
+            //vector of what direction the move occurs in
+            Vector3 v = Vector3.Transform(amount, forwardMovement);
+
+            //add the transformed values to the current position
+            _position.X += v.X;
+            _position.Y += v.Y;
+            _position.Z += v.Z;
+
+            if (_boundingVolume != null)
+            {
+                this._boundingVolume.Position = this._position;
+            }
         }
 
         /// <summary>
@@ -67,9 +85,16 @@ namespace KerpEngine.Global
         /// by the provided amount.
         /// </summary>
         /// <param name="amount">The amount to increase (positive) or decrease (negative) the rotation value by.</param>
-        public virtual void Rotate(Vector3 amountInDegrees)
+        public virtual void Rotate(Vector3 amount)
         {
-            this._rotation += amountInDegrees;
+            _rotation += amount;
+            _orientation = Quaternion.CreateFromYawPitchRoll(_rotation.Y, _rotation.X, _rotation.Z);
+
+            if (_boundingVolume != null)
+            {
+                this._boundingVolume.Rotation = this._rotation;
+                this._boundingVolume.Orientation = this._orientation;
+            }
         }
 
         /// <summary>
@@ -79,7 +104,12 @@ namespace KerpEngine.Global
         /// <param name="amount">The amount to increase (positive) or decrease (negative) the scale factor by.</param>
         public virtual void Scale(Vector3 amount)
         {
-            this._scale += amount;
+            _scale += amount;
+
+            if (_boundingVolume != null)
+            {
+                _boundingVolume.Scale(amount);
+            }
         }
 
         /// <summary>
@@ -88,7 +118,12 @@ namespace KerpEngine.Global
         /// <param name="newTintColor">The new color to tint this object with when drawing.</param>
         public virtual void Tint(Color newTintColor)
         {
-            this._textureTint = newTintColor;
+            _textureTint = newTintColor;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract void Update();
     }
 }

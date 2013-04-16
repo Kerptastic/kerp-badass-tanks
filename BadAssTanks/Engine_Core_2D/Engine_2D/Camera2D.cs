@@ -82,7 +82,7 @@ namespace KerpEngine.Engine_2D
         /// <summary>
         /// Updates the camera matrices for drawing a new scene.
         /// </summary>
-        public void Update() 
+        public override void Update() 
         { 
             this.UpdatePosition();
 

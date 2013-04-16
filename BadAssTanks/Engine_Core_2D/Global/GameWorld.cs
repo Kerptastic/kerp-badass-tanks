@@ -3,13 +3,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KerpEngine.Engine_2D;
 using KerpEngine.Engine_3D;
+using KerpEngine.Core;
 
 namespace KerpEngine.Global
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class GameWorld
+    public abstract class GameWorld<SpatialStorageObjectType, BoundingVolumeType> 
     {
         protected Viewport _viewport;
         
@@ -28,21 +29,21 @@ namespace KerpEngine.Global
         /// <summary>
         /// 
         /// </summary>
-        protected QuadTree _quadTree;
-        public QuadTree QuadTree { get { return _quadTree; } }
+        protected SpatialStructure<SpatialStorageObjectType, BoundingVolumeType> _spatialStructure;
+        public SpatialStructure<SpatialStorageObjectType, BoundingVolumeType> SpatialStructure { get { return _spatialStructure; } }
 
         public GameWorld(TextureHandler textureHandler, ModelHandler modelHandler, Viewport viewport)
         {
             _textureHandler = textureHandler;
             _modelHandler = modelHandler;
             _viewport = viewport;
-
-            _quadTree = new QuadTree(0, 0, 20, 20);
-            _quadTree.Divide();
         }
 
+        protected abstract void BuildWorld();
+        public abstract void CheckCollisions();
         public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
         public abstract void Draw(GraphicsDevice device, BasicEffect effect, Matrix viewMatrix, Matrix projectionMatrix, GameTime gameTime);
+        public abstract void Update(GameTime gameTime);
 
         #region BadAssTanks World Code
         //public enum WorldObjectType

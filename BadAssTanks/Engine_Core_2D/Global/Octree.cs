@@ -220,7 +220,7 @@ namespace KerpEngine.Engine_2D
         /// <summary>
         /// Draws this Octree node on the screen.
         /// </summary>
-        public void Draw()
+        public override void  Draw(GraphicsDevice device, BasicEffect effect)
         {
             //if (_childNodes != null)
             //{

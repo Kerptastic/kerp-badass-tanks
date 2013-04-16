@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KerpEngine.Engine_2D;
 using KerpEngine.Engine_3D;
+using KerpEngine.Core;
 
 namespace KerpEngine.Global
 {
@@ -48,6 +49,11 @@ namespace KerpEngine.Global
         /// <summary>
         /// 
         /// </summary>
+        protected Camera3D _camera3d = null;
+        public Camera3D Camera3D { get { return _camera3d; } }
+        /// <summary>
+        /// 
+        /// </summary>
         protected TextureHandler _textureHandler = null;
         public TextureHandler TextureHandler { get { return _textureHandler; } }
         /// <summary>
@@ -75,17 +81,6 @@ namespace KerpEngine.Global
         protected override void Initialize()
         {
             this.IsFixedTimeStep = false;
-
-            //setup the screen and apply the changes
-            _gdManager.PreferredBackBufferWidth = 800;
-            _gdManager.PreferredBackBufferHeight = 600;
-            _gdManager.IsFullScreen = false;
-            //_gdManager.SynchronizeWithVerticalRetrace = false;
-            _gdManager.ApplyChanges();
-
-            _camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector3(0.0f,0.0f, 0.0f));
-           
-            Window.Title = "Bad-Ass Tanks!";
 
             base.Initialize();
         }
@@ -133,6 +128,7 @@ namespace KerpEngine.Global
         protected override void Update(GameTime gameTime)
         {
             _camera2d.Update();
+            _camera3d.Update();
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
             {

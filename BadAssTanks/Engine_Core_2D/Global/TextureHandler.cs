@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace KerpEngine.Engine_2D
+namespace KerpEngine.Core
 {
     /// <summary>
     /// Loads and manages 2D Textures for the Game Engine.
@@ -17,34 +17,24 @@ namespace KerpEngine.Engine_2D
         /// </summary>
         protected ContentManager _contentManager;
         /// <summary>
-        /// The initialization file that is used to provide texture
-        /// loading information (primarily for handling what sprites
-        /// to load/unload and when).
-        /// </summary>
-        protected string _textureInitFile;
-        /// <summary>
         /// The Texture Map holding the sprites to be retrieved when needed.
         /// </summary>
-        protected Dictionary<string, Texture2D> _textureMap = new Dictionary<string, Texture2D>();
+        protected Dictionary<string, Texture2D> _textureMap;
         /// <summary>
         /// The Texture Map holding the sprite fonts to be retrieved when needed.
         /// </summary>
-        protected Dictionary<string, SpriteFont> _fontTextureMap = new Dictionary<string, SpriteFont>();
+        protected Dictionary<string, SpriteFont> _fontTextureMap;
 
         /// <summary>
         /// Creates a new 2D Texture Handler. 
-        /// 
-        /// Will load the Textures upon creation.
         /// </summary>
-        /// <param name="textureInitFile">The init file of textures to use.</param>
         /// <param name="contentManager">The content manager handling the textures.</param>
-        public TextureHandler(string textureInitFile, ContentManager contentManager)
+        public TextureHandler(ContentManager contentManager)
         {
-            _textureInitFile = textureInitFile;
-            _contentManager = contentManager;
+            _textureMap = new Dictionary<string, Texture2D>();
+            _fontTextureMap = new Dictionary<string, SpriteFont>();
 
-            this.LoadTextures();
-            this.LoadFontTextures();
+            _contentManager = contentManager;
         }
 
         /// <summary>
@@ -78,11 +68,13 @@ namespace KerpEngine.Engine_2D
         /// <summary>
         /// Loads the Textures - implemented by extending classes.
         /// </summary>
-        protected abstract void LoadTextures();
+        /// <param name="textureInitFile">Texture file listing to load.</param>
+        public abstract void LoadTextures(string textureInitFile);
 
         /// <summary>
         /// Loads the Font Textures - implemented by extending classes.
         /// </summary>
-        protected abstract void LoadFontTextures();
+        /// <param name="textureInitFile">Texture file listing to load.</param>
+        public abstract void LoadFontTextures(string textureInitFile);
     }
 }

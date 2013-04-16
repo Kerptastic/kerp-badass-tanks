@@ -57,22 +57,20 @@ namespace KerpEngine.Engine_3D
         /// Y = Pitch
         /// Z = Roll
         /// </summary>
-        /// <param name="amountInDegrees">The amount of change in the rotation values.</param>
-        public override void Rotate(Vector3 amountInDegrees)
+        /// <param name="amount">The amount of change in the rotation values.</param>
+        public override void Rotate(Vector3 amount)
         {
-            base.Rotate(amountInDegrees);
+            base.Rotate(amount);
 
             //lock the pitch based off the max pitch.
-            if (_rotation.Y > MathHelper.PiOver4)
+            if (_rotation.X > MathHelper.PiOver4)
             {
-                _rotation.Y = MathHelper.PiOver4;
+                _rotation.X = MathHelper.PiOver4;
             }
-            else if (_rotation.Y < -MathHelper.PiOver4)
+            else if (_rotation.X < -MathHelper.PiOver4)
             {
-                _rotation.Y = -MathHelper.PiOver4;
+                _rotation.X = -MathHelper.PiOver4;
             }
-
-            _orientation = Quaternion.CreateFromYawPitchRoll(_rotation.X, _rotation.Y, _rotation.Z);
         }
 
         /// <summary>
@@ -80,17 +78,10 @@ namespace KerpEngine.Engine_3D
         /// </summary>
         public override void Update()
         {
-            //calculate the camera's current position.
-            Matrix rotationMatrix = Matrix.CreateFromQuaternion(_orientation);
-
-            //create a vector pointing the direction the camera is facing.
-            Vector3 transformedReference = Vector3.Transform(_referenceLookAt, rotationMatrix);
-
-            //calculate the position the camera is looking at.
-            _lookAt = _position + transformedReference;
+            base.Update();
 
             //set up the view matrix
-            _view = Matrix.CreateLookAt(_position, _lookAt, new Vector3(0.0f, 1.0f, 0.0f));
+            _view = Matrix.CreateLookAt(_position, _lookAt, Vector3.Up);
         }
     }
 }

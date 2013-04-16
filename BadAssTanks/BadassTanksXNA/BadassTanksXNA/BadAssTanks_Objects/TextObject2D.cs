@@ -17,15 +17,18 @@ namespace BadassTanksXNA.BadAssTanks_Objects
         /// <param name="xLocation">The x location to draw the object.</param>
         /// <param name="yLocation">The y location to draw the object.</param>
         /// <param name="textureTint">The tint color to use when drawing the object.</param>
-        public TextObject2D(TextSprite sprite, int xLocation, int yLocation, Color textureTint)
+        public TextObject2D(TextSprite2D sprite, int xLocation, int yLocation, Color textureTint)
             : base(sprite, xLocation, yLocation, textureTint)
         {
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newText"></param>
         public void SetText(string newText)
         {
-            ((TextSprite)_sprite).Text = newText;
+            ((TextSprite2D)_sprite).Text = newText;
         }
 
         /// <summary>
@@ -38,6 +41,10 @@ namespace BadassTanksXNA.BadAssTanks_Objects
             {
                 _sprite.Draw(spriteBatch, _position, _rotation.Z, _scale.X, _textureTint, SpriteEffects.None, 0.0f);
             }
+        }
+
+        public override void Update()
+        {
         }
     }
 }

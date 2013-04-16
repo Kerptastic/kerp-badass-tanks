@@ -14,10 +14,11 @@ namespace BadassTanksXNA.BadAssTanks_Objects
     /// </summary>
     public class TankObject3D : GameObject3D
     {
-        public TankObject3D(CustomModel model, Vector3 position, Color textureTint)
-            : base(model, position, textureTint)
+        public TankObject3D(CustomModel model, Vector3 position, Vector3 target, Color textureTint)
+            : base(model, position, target, textureTint)
         {
-            _boundingVolume = new AABB(_position, new Vector3(0.5f, 0.5f, -0.5f), new Vector3(-0.5f, -0.5f, 0.5f));//10.0f, 10.0f);
+            _boundingVolume = new OABB(position, new Vector3(1.0f, 1.0f, 1.0f), 
+                new Vector3(-1.0f, -1.0f, -1.0f));
         }
     }
 }

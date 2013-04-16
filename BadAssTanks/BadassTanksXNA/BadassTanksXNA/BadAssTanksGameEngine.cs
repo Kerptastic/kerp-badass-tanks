@@ -16,9 +16,9 @@ namespace BadassTanksXNA
     /// </summary>
     public class BadAssTanksGameEngine : GameEngine<BadAssTanksWorld>
     {
-        Camera3D cam3D;
         BasicEffect quadEffect;
         float _framesPerSecond = 0.0f;
+        StringBuilder _debugTextBuffer = new StringBuilder();
 
         public BadAssTanksGameEngine()
             : base()
@@ -29,11 +29,18 @@ namespace BadassTanksXNA
         {
             base.LoadContent();
 
-            _textureHandler = new BadAssTanksTextureHandler("", Content);
-            _modelHandler = new BadAssTanksModelHandler("", Content);
+            _textureHandler = new BadAssTanksTextureHandler(Content);
+            _textureHandler.LoadTextures("");
+            _textureHandler.LoadFontTextures("");
+
+            _modelHandler = new BadAssTanksModelHandler(Content);
+            _modelHandler.LoadModels("");
+
             _gameWorld = new BadAssTanksWorld(_textureHandler, _modelHandler, GraphicsDevice.Viewport);
 
-            cam3D = new Camera3DFirstPerson(GraphicsDevice.Viewport,
+            _camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector3(0, 4, 10));
+
+            _camera3d = new Camera3DFirstPerson(GraphicsDevice.Viewport,
                 new Vector3(0, 0, -10), new Vector3(0.0f, 0.0f, 0.0f));
 
             quadEffect = new BasicEffect(_graphicsDevice);
@@ -53,7 +60,7 @@ namespace BadassTanksXNA
             _framesPerSecond = (1000.0f / (float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
             float moveSpeed = 5.0f;
-            float rotateSpeed = 2.0f;
+            float rotateSpeed = MathHelper.ToRadians(70.0f);
             float rotateAmount = 0.0f;
             float moveAmount = 0.0f;
 
@@ -63,109 +70,84 @@ namespace BadassTanksXNA
                 moveAmount = (moveSpeed * (float)gameTime.ElapsedGameTime.TotalMilliseconds) / 1000.0f;
             }
 
-            Vector3 rotation = new Vector3(rightStick.X, rightStick.Y, 0.0f);
-            cam3D.Rotate(rotation * rotateAmount);
+            Vector3 rotation = new Vector3(-rightStick.Y, -rightStick.X, 0.0f);
+            _camera3d.Rotate(rotation * rotateAmount);
 
-            Vector3 movement = new Vector3(leftStick.X, 0.0f, leftStick.Y);
-            cam3D.Move(movement * moveAmount);
+            Vector3 movement = new Vector3(-leftStick.X, 0.0f, leftStick.Y);
+            _camera3d.Move(movement * moveAmount);
 
 
             KeyboardState keyboard = Keyboard.GetState();
 
             if (keyboard.IsKeyDown(Keys.D))
             {
+
+                this._gameWorld.MeshObject.Rotate(new Vector3(0.0f, -rotateAmount, 0.0f));
                 //this._gameWorld.TestObject.Move(new Vector2(1.0f, 0.0f), amount * 10);
                 
             }
             if (keyboard.IsKeyDown(Keys.A))
             {
+                this._gameWorld.MeshObject.Rotate(new Vector3(0.0f, rotateAmount, 0.0f));
                 //this._gameWorld.TestObject.Move(new Vector2(-1.0f, 0.0f), amount);
                 //this.cam.Move(new Vector3(1.0f, 0.0f, 0.0f), 0.05f);
             }
             if (keyboard.IsKeyDown(Keys.S))
             {
-                //this._gameWorld.TestObject.Move(new Vector2(0.0f, -1.0f), amount);
-                this.cam3D.Move(new Vector3(0.0f, 0.0f, -0.05f));
+                this._gameWorld.MeshObject.Move(new Vector3(0.0f, 0.0f, -1.0f));
+                //_camera3d.Move(new Vector3(0.0f, 0.0f, -0.05f));
             }
             if (keyboard.IsKeyDown(Keys.W))
             {
-                //this._gameWorld.TestObject.Move(new Vector2(0.0f, 1.0f), amount);
-                this.cam3D.Move(new Vector3(0.0f, 0.0f, 0.05f));
+                this._gameWorld.MeshObject.Move(new Vector3(0.0f, 0.0f, 1.0f));
+               // _camera3d.Move(new Vector3(0.0f, 0.0f, 0.05f));
             }
             if (keyboard.IsKeyDown(Keys.Escape))
             {
                 this.Exit();
             }
-
-
-            //if (keyboard.IsKeyDown(Keys.Up))
-            //{
-            //    _gameWorld.MeshObject.Move(new Vector3(0.0f, 1.0f, 0.0f), 0.05f);
-            //}
-            //if (keyboard.IsKeyDown(Keys.Down))
-            //{
-            //    _gameWorld.MeshObject.Move(new Vector3(0.0f, -1.0f, 0.0f), 0.05f);
-            //}
-            //if (keyboard.IsKeyDown(Keys.Left))
-            //{
-            //    _gameWorld.MeshObject.Move(new Vector3(-1.0f, 0.0f, 0.0f), 0.05f);
-            //}
-            //if (keyboard.IsKeyDown(Keys.Right))
-            //{
-            //    _gameWorld.MeshObject.Move(new Vector3(1.0f, 0.0f, 0.0f), 0.05f);
-            //}
-            //if (keyboard.IsKeyDown(Keys.RightAlt))
-            //{
-            //    _gameWorld.MeshObject.Move(new Vector3(0.0f, 0.0f, 1.0f), 0.05f);
-            //}
-            //if (keyboard.IsKeyDown(Keys.RightControl))
-            //{
-            //    _gameWorld.MeshObject.Move(new Vector3(0.0f, 0.0f, -1.0f), 0.05f);
-            //}
-
-
-            cam3D.Update();
         }
 
 
         protected override void Draw(GameTime gameTime)
         {
             quadEffect.EnableDefaultLighting();
-            quadEffect.View = cam3D.View;
-            quadEffect.Projection = cam3D.Projection;
+            quadEffect.View = _camera3d.View;
+            quadEffect.Projection = _camera3d.Projection;
 
             _spriteBatch.Begin(SpriteSortMode.Deferred,
                                BlendState.AlphaBlend,
                                null, null, null, null,
                                _camera2d.View);
 
-            this.DrawText();
+            this.UpdateDebugText();
             _gameWorld.Draw(_spriteBatch, gameTime);
 
 
             _spriteBatch.End();
 
-            
-            _gameWorld.Draw(_graphicsDevice, quadEffect, cam3D.View, cam3D.Projection, gameTime);
+
+            _gameWorld.Draw(_graphicsDevice, quadEffect, _camera3d.View, _camera3d.Projection, gameTime);
         }
 
-        private void DrawText()
-        {
-            StringBuilder buffer = new StringBuilder();
-          
-            buffer.AppendFormat("FPS: {0}\n", _framesPerSecond);
-          
-            buffer.Append("Camera:\n");
-            buffer.AppendFormat("  Position: x:{0} y:{1} z:{2}\n",
-                cam3D.Position.X.ToString("f2"),
-                cam3D.Position.Y.ToString("f2"),
-                cam3D.Position.Z.ToString("f2"));
-            buffer.AppendFormat("  Orientation: heading:{0} pitch:{1}\n",
-                cam3D.Yaw.ToString("f2"),
-                cam3D.Pitch.ToString("f2"));
 
-            ((TextObject2D)_gameWorld.TextObject).SetText(buffer.ToString());
-            _gameWorld.TextObject.Draw(_spriteBatch);
+        private void UpdateDebugText()
+        {
+            _debugTextBuffer.Clear();
+          
+            _debugTextBuffer.AppendFormat("FPS: {0}\n", _framesPerSecond);
+          
+            _debugTextBuffer.Append("Camera:\n");
+            _debugTextBuffer.AppendFormat("  Position: x:{0} y:{1} z:{2}\n",
+                _camera3d.Position.X.ToString("f2"),
+                _camera3d.Position.Y.ToString("f2"),
+                _camera3d.Position.Z.ToString("f2"));
+
+            _debugTextBuffer.AppendFormat("  Orientation: heading:{0} pitch:{1}\n",
+                _camera3d.Yaw.ToString("f2"),
+                _camera3d.Pitch.ToString("f2"));
+
+            ((TextObject2D)_gameWorld.TextObject).SetText(_debugTextBuffer.ToString());
         }
     }
 }

@@ -45,20 +45,17 @@ namespace KerpEngine.Engine_2D
         /// <param name="textureTint">The color to tint the Sprite when being drawn.</param>
         public GameObject2D(CustomSprite sprite, float xLocation, float yLocation, Color textureTint)
         {
-            this._position = new Vector3(xLocation, yLocation, 0.0f);
-            this._sprite = sprite;
-            this._textureTint = textureTint;
+            _position = new Vector3(xLocation, yLocation, 0.0f);
+            _sprite = sprite;
+            _textureTint = textureTint;
 
-            this._rotation = new Vector3(0.0f, 0.0f, 0.0f);
-            this._scale = new Vector3(1.0f, 1.0f, 1.0f);
+            _scale = new Vector3(1.0f, 1.0f, 1.0f);
+            _rotation = new Vector3(0.0f, 0.0f, 0.0f);
 
             if (_sprite != null)
             {
-                //_boundingVolume = new AABB(new Vector3(xLocation, yLocation, 0.0f), 
-                    //new Vector3(xLocation + _sprite.Width, yLocation + _sprite.Height, 0.0f));
-
                 //create a bounding volume giving the location of the center, width and height
-                _boundingVolume = new AABB(new Vector3(xLocation, yLocation, 0.0f), _sprite.Width, _sprite.Height);
+                _boundingVolume = new AABB(_position, _sprite.Width, _sprite.Height);
             }
         }
 
@@ -88,6 +85,7 @@ namespace KerpEngine.Engine_2D
                                Matrix.CreateTranslation(_position.X, _position.Y, 0.0f);
 
                 _sprite.Draw(device, effect);
+               // _boundingVolume.Draw(device, effect);
             }
         }
     }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace KerpEngine.Global
 {
@@ -55,5 +54,11 @@ namespace KerpEngine.Global
         /// </summary>
         /// <param name="gameObj">The object to remove from the structure.</param>
         public abstract void RemoveObject(StoredObject_Type gameObj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="effect"></param>
+        public abstract void Draw(GraphicsDevice device, BasicEffect effect);
     }
 }

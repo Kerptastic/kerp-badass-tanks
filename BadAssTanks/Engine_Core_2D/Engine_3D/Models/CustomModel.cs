@@ -18,13 +18,21 @@ namespace KerpEngine.Engine_3D.Models
         protected Model _model;
         public Model Model { get { return _model; } }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
         public CustomModel(Model model)
         {
             _model = model;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="worldMatrix"></param>
+        /// <param name="viewMatrix"></param>
+        /// <param name="projectionMatrix"></param>
         public void Draw(Matrix worldMatrix, Matrix viewMatrix, Matrix projectionMatrix)
         {
             Matrix[] transforms = new Matrix[_model.Bones.Count];

@@ -1,6 +1,7 @@
 ﻿using KerpEngine.Engine_2D;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Core;
 
 namespace BadassTanksXNA.Utility
 {
@@ -12,17 +13,17 @@ namespace BadassTanksXNA.Utility
         /// <summary>
         /// Initializes the Texture Handler.
         /// </summary>
-        /// <param name="textureInitFile">The init file of textures to use.</param>
         /// <param name="contentManager">The content manager handling the textures.</param>
-        public BadAssTanksTextureHandler(string textureInitFile, ContentManager contentManager)
-            : base(textureInitFile, contentManager)
+        public BadAssTanksTextureHandler(ContentManager contentManager)
+            : base(contentManager)
         {
         }
 
         /// <summary>
         /// Loads the Textures - implemented by extending classes.
         /// </summary>
-        protected override void LoadTextures()
+        /// <param name="textureInitFile">Texture file listing to load.</param>
+        public override void LoadTextures(string textureInitFile)
         {
             //
             //TODO: load all the textures from the string names file and add them to the map
@@ -35,7 +36,8 @@ namespace BadassTanksXNA.Utility
         /// <summary>
         /// Loads the Font Textures - implemented by extending classes.
         /// </summary>
-        protected override void LoadFontTextures()
+        /// <param name="textureInitFile">Texture file listing to load.</param>
+        public override void LoadFontTextures(string textureInitFile)
         {
             //
             //TODO: load all the textures from the string names file and add them to the map

@@ -45,5 +45,9 @@ namespace BadassTanksXNA.BadAssTanks_Objects
                 _sprite.Draw(spriteBatch, _position, _rotation.Z, _scale.X, _textureTint, SpriteEffects.None, 0.0f);
             }
         }
+
+        public override void Update()
+        {
+        }
     }
 }

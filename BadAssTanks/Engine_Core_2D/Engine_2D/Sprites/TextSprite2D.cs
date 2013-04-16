@@ -7,7 +7,7 @@ namespace KerpEngine.Engine_2D.Sprites
     /// <summary>
     /// Represents a Text Sprite that can be drawn to the screen.
     /// </summary>
-    public class TextSprite : CustomSprite
+    public class TextSprite2D : CustomSprite
     {
         /// <summary>
         /// The text to display within the TextSprite.
@@ -25,7 +25,7 @@ namespace KerpEngine.Engine_2D.Sprites
         /// </summary>
         /// <param name="font">The font to use when drawing the TextSprite text.</param>
         /// <param name="text">The text to display within the TextSprite.</param>
-        public TextSprite(SpriteFont font, string text)
+        public TextSprite2D(SpriteFont font, string text)
             : base(null, 0.0f, 0.0f)
         {
             _font = font;

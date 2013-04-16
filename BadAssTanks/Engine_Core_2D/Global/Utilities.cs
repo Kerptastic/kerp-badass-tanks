@@ -82,18 +82,18 @@ namespace KerpEngine.Global
     public static class Utilities
     {
         /// <summary>
-        /// Ensure the angle value stays between -180 and 180 so the numbers
+        /// Ensure the angle value stays between -360 and 360 so the numbers
         /// never get so large or small that they break precision or overflow.
         /// </summary>
-        /// <param name="radians">The angle to clamp between -180 and 180.</param>
-        /// <returns>A clamped angle, clamped between -180 and 180.</returns>
+        /// <param name="radians">The angle to clamp between -360 and 360.</param>
+        /// <returns>A clamped angle, clamped between -360 and 360.</returns>
         public static float ClampAngleDegrees(float degrees)
         {
-            while (degrees < -180)
+            while (degrees < -360)
             {
                 degrees += 360;
             }
-            while (degrees > 180)
+            while (degrees > 360)
             {
                 degrees -= 360;
             }
@@ -109,31 +109,31 @@ namespace KerpEngine.Global
         public static Vector3 ClampAngleDegrees(Vector3 degrees)
         {
             //clamp the X
-            while (degrees.X < -180)
+            while (degrees.X < -360)
             {
                 degrees.X += 360;
             }
-            while (degrees.X > 180)
+            while (degrees.X > 360)
             {
                 degrees.X -= 360;
             }
 
             //clamp the Y
-            while (degrees.Y < -180)
+            while (degrees.Y < -360)
             {
                 degrees.Y += 360;
             }
-            while (degrees.Y > 180)
+            while (degrees.Y > 360)
             {
                 degrees.Y -= 360;
             }
 
             //clamp the Z
-            while (degrees.Z < -180)
+            while (degrees.Z < -360)
             {
                 degrees.Z += 360;
             }
-            while (degrees.Z > 180)
+            while (degrees.Z > 360)
             {
                 degrees.Z -= 360;
             }
@@ -142,18 +142,18 @@ namespace KerpEngine.Global
         }
 
         /// <summary>
-        /// Ensure the angle value stays between -Pi and Pi so the numbers
+        /// Ensure the angle value stays between -2Pi and 2Pi so the numbers
         /// never get so large or small that they break precision or overflow.
         /// </summary>
-        /// <param name="radians">The angle to clamp between -Pi and Pi.</param>
-        /// <returns>A clamped angle, clamped between -Pi and Pi.</returns>
+        /// <param name="radians">The angle to clamp between -2Pi and 2Pi.</param>
+        /// <returns>A clamped angle, clamped between -2Pi and 2Pi.</returns>
         public static float ClampAngleRadians(float radians)
         {
-            while (radians < -MathHelper.Pi)
+            while (radians < -MathHelper.TwoPi)
             {
                 radians += MathHelper.TwoPi;
             }
-            while (radians > MathHelper.Pi)
+            while (radians > MathHelper.TwoPi)
             {
                 radians -= MathHelper.TwoPi;
             }
@@ -169,31 +169,31 @@ namespace KerpEngine.Global
         public static Vector3 ClampAngleRadians(Vector3 degrees)
         {
             //clamp the X
-            while (degrees.X < -MathHelper.Pi)
+            while (degrees.X < -MathHelper.TwoPi)
             {
                 degrees.X += MathHelper.TwoPi;
             }
-            while (degrees.X > MathHelper.Pi)
+            while (degrees.X > MathHelper.TwoPi)
             {
                 degrees.X -= MathHelper.TwoPi;
             }
 
             //clamp the Y
-            while (degrees.Y < -MathHelper.Pi)
+            while (degrees.Y < -MathHelper.TwoPi)
             {
                 degrees.Y += MathHelper.TwoPi;
             }
-            while (degrees.Y > MathHelper.Pi)
+            while (degrees.Y > MathHelper.TwoPi)
             {
                 degrees.Y -= MathHelper.TwoPi;
             }
 
             //clamp the Z
-            while (degrees.Z < -MathHelper.Pi)
+            while (degrees.Z < -MathHelper.TwoPi)
             {
                 degrees.Z += MathHelper.TwoPi;
             }
-            while (degrees.Z > MathHelper.Pi)
+            while (degrees.Z > MathHelper.TwoPi)
             {
                 degrees.Z -= MathHelper.TwoPi;
             }

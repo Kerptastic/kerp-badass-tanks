@@ -17,29 +17,18 @@ namespace KerpEngine.Engine_3D
         /// </summary>
         protected ContentManager _contentManager;
         /// <summary>
-        /// The initialization file that is used to provide model
-        /// loading information (primarily for handling what models
-        /// to load/unload and when).
-        /// </summary>
-        protected string _modelInitFile;
-        /// <summary>
         /// The Model Map holding the models to be retrieved when needed.
         /// </summary>
-        protected Dictionary<string, Model> _modelMap = new Dictionary<string, Model>();
+        protected Dictionary<string, Model> _modelMap;
 
         /// <summary>
-        /// Creates a new 3D Model Handler. 
-        /// 
-        /// Will load the Models upon creation.
+        /// Creates a new 3D Model Handler.
         /// </summary>
-        /// <param name="textureInitFile">The init file of models to use.</param>
         /// <param name="contentManager">The content manager handling the models.</param>
-        public ModelHandler(string modelInitFile, ContentManager contentManager)
+        public ModelHandler(ContentManager contentManager)
         {
-            _modelInitFile = modelInitFile;
+            _modelMap = new Dictionary<string, Model>();
             _contentManager = contentManager;
-
-            this.LoadModels();
         }
 
         /// <summary>
@@ -59,6 +48,7 @@ namespace KerpEngine.Engine_3D
         /// <summary>
         /// Loads the Models - implemented by extending classes.
         /// </summary>
-        protected abstract void LoadModels();
+        /// <param name="modelInitFile">Model file listing to load.</param>
+        public abstract void LoadModels(string modelInitFile);
     }
 }

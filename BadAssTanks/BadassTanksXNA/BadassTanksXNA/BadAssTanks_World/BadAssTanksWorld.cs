@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BadassTanksXNA.BadAssTanks_Objects;
-using KerpEngine.Global;
-using KerpEngine.Engine_2D.Sprites;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using KerpEngine.Core;
 using KerpEngine.Engine_2D;
+using KerpEngine.Engine_2D.Sprites;
 using KerpEngine.Engine_3D;
 using KerpEngine.Engine_3D.Models;
+using KerpEngine.Global;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BadassTanksXNA.BadAssTanks_World
 {
     /// <summary>
     /// 
     /// </summary>
-    public class BadAssTanksWorld : GameWorld
+    public class BadAssTanksWorld : GameWorld<GameObject, AABB>
     {
         private GameObject2D obj1;
         public GameObject2D TestObject { get { return obj1; } }
@@ -30,14 +30,16 @@ namespace BadassTanksXNA.BadAssTanks_World
         public BadAssTanksWorld(TextureHandler textureHandler, ModelHandler modelHandler, Viewport viewport)
             : base(textureHandler, modelHandler, viewport)
         {
+            _spatialStructure = new QuadTree(0, 0, 100, 100);
+
             obj1 = new TitleTextObject2D(new UnanimatedSprite(_textureHandler.GetTexture("bad"), 1, 1), 0, 0, Color.White);
             obj1.ScaleValue = new Vector3(0.4f, 0.4f, 0.4f);
             
-            obj2 = new TextObject2D(new TextSprite(_textureHandler.GetFontTexture("courierNew"), "Hello World"), 220, 50, Color.White);
+            obj2 = new TextObject2D(new TextSprite2D(_textureHandler.GetFontTexture("courierNew"), "Hello World"), 220, 50, Color.White);
 
-            obj3 = new TankObject3D(new CustomModel(_modelHandler.GetModel("xwing")), new Vector3(0.0f, 0.0f, 0.5f), Color.White);
-            obj3.ScaleValue = new Vector3(0.002f, 0.002f, 0.002f);
-            obj3.Rotation = new Vector3(MathHelper.ToRadians(10.0f), MathHelper.ToRadians(10.0f), MathHelper.ToRadians(10.0f));
+            obj3 = new TankObject3D(new CustomModel(_modelHandler.GetModel("test")), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f), Color.White);
+            //obj3.ScaleValue = new Vector3(1.0f, 1.0f, 1.0f);
+            //obj3.Rotation = new Vector3(MathHelper.ToRadians(10.0f), MathHelper.ToRadians(10.0f), MathHelper.ToRadians(10.0f));
 
             //_quadTree.AddObject(obj1);
             //_quadTree.AddObject(obj2);
@@ -64,17 +66,33 @@ namespace BadassTanksXNA.BadAssTanks_World
             //}
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        protected override void BuildWorld()
         {
-            
-            //obj2.Draw(spriteBatch);           
+        }
+
+        public override void CheckCollisions()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {  
+            obj2.Draw(spriteBatch);           
         }
 
         public override void Draw(GraphicsDevice device, BasicEffect effect, Matrix viewMatrix, Matrix projectionMatrix, GameTime gameTime)
         {
-            _quadTree.Draw(device, effect);
+            _spatialStructure.Draw(device, effect);
+
             obj1.Draw(device, effect);
             obj3.Draw(device, effect, viewMatrix, projectionMatrix);   
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            obj1.Update();
+            obj2.Update();
+            obj3.Update();
         }
     }
 }

@@ -194,7 +194,7 @@ namespace KerpEngine.Engine_2D
         /// </summary>
         /// <param name="graphicsDevice">The Graphics Device to use to draw the Volume.</param>
         /// <param name="effect">The effect to use when drawing.</param>
-        public void Draw(GraphicsDevice graphicsDevice, BasicEffect effect)
+        public override void Draw(GraphicsDevice graphicsDevice, BasicEffect effect)
         {
             if (_childNodes != null)
             {

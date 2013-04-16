@@ -16,26 +16,25 @@ namespace BadassTanksXNA.Utility
        
         /// <summary>
         /// Creates a new 3D Model Handler. 
-        /// 
-        /// Will load the Models upon creation.
         /// </summary>
-        /// <param name="textureInitFile">The init file of models to use.</param>
         /// <param name="contentManager">The content manager handling the models.</param>
-        public BadAssTanksModelHandler(string textureInitFile, ContentManager contentManager)
-            : base(textureInitFile, contentManager)
+        public BadAssTanksModelHandler(ContentManager contentManager)
+            : base(contentManager)
         {
         }
 
         /// <summary>
         /// Loads the Models - implemented by extending classes.
         /// </summary>
-        protected override void LoadModels()
+        /// <param name="modelInitFile">Model file listing to load.</param>
+        public override void LoadModels(string modelInitFile)
         {
             //
             //TODO: load all the models from the string names file and add them to the map
             //
 
             _modelMap.Add("xwing", _contentManager.Load<Model>("xwing"));
+            _modelMap.Add("test", _contentManager.Load<Model>("test"));
         }
     }
 }
