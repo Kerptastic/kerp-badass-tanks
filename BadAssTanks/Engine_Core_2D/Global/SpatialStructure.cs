@@ -13,6 +13,11 @@ namespace KerpEngine.Global
     public abstract class SpatialStructure<StoredObject_Type, BoundingVolume_Type>
     {
         /// <summary>
+        /// 
+        /// </summary>
+        protected SpatialStructure<StoredObject_Type, BoundingVolume_Type> _parent;
+        public SpatialStructure<StoredObject_Type, BoundingVolume_Type> Parent { get { return _parent; } }
+        /// <summary>
         /// The list of objects contained within this Structure's Node.
         /// </summary>
         protected List<StoredObject_Type> _objects;
@@ -23,7 +28,6 @@ namespace KerpEngine.Global
         /// </summary>
         protected BoundingVolume_Type _boundingVolume;
         public BoundingVolume_Type BoundingVolume { get { return _boundingVolume; } set { _boundingVolume = value; } }
-
         /// <summary>
         /// The child nodes of this Quad Tree Node.
         /// </summary>
@@ -43,6 +47,12 @@ namespace KerpEngine.Global
         /// </summary>
         public abstract void Divide();
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameObj"></param>
+        /// <returns></returns>
+        public abstract SpatialStructure<StoredObject_Type, BoundingVolume_Type> FindObjectsNode(StoredObject_Type gameObj);
+        /// <summary>
         /// A possibly recursive method that returns the
         /// smallest quad that contains the specified rectangle
         /// </summary>
@@ -60,5 +70,84 @@ namespace KerpEngine.Global
         /// <param name="device"></param>
         /// <param name="effect"></param>
         public abstract void Draw(GraphicsDevice device, BasicEffect effect);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<StoredObject_Type> GetAllObjects()
+        {
+            SpatialStructure<StoredObject_Type, BoundingVolume_Type> topNode = this;
+
+            while (topNode.Parent != null)
+            {
+                topNode = topNode.Parent;
+            }
+
+            return GetAllObjectsInNode(topNode);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public static List<StoredObject_Type> GetAllObjectsInNode(SpatialStructure<StoredObject_Type, BoundingVolume_Type> node)
+        {
+            List<StoredObject_Type> allObjects = new List<StoredObject_Type>();
+
+            allObjects.AddRange(node.Objects);
+
+            if (node.ChildNodes != null)
+            {
+                for (int nodeCount = 0; nodeCount < node.ChildNodes.Length; nodeCount++)
+                {
+                    allObjects.AddRange(GetAllObjectsInNode(node.ChildNodes[nodeCount]));
+                }
+            }
+
+            return allObjects;
+        }
+
+
+        public List<StoredObject_Type> GetMyObjects()
+        {
+            return GetAllObjectsInNode(this);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void RedistributeObjects()
+        {
+            List<StoredObject_Type> myObjects = GetMyObjects();
+
+            SpatialStructure<StoredObject_Type, BoundingVolume_Type> storedNode;
+
+            //clear out all of the children
+            foreach (StoredObject_Type gameObj in myObjects)
+            {
+                storedNode = FindObjectsNode(gameObj);
+                storedNode.RemoveObject(gameObj);
+            }
+
+            //clear the children
+            _childNodes = null;
+
+            //get the root and readd everything
+            SpatialStructure<StoredObject_Type, BoundingVolume_Type> topNode = this;
+
+            while (topNode.Parent != null)
+            {
+                topNode = topNode.Parent;
+            }
+
+            //add all of the objects back in
+            foreach (StoredObject_Type gameObj in myObjects)
+            {
+                topNode.AddObject(gameObj);
+            }
+        }
     }
 }

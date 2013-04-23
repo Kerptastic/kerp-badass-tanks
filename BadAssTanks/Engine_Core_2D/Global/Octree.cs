@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using KerpEngine.Engine_2D.Sprites;
-using KerpEngine.Global;
 using Microsoft.Xna.Framework.Graphics;
 using KerpEngine.Engine_3D;
 using KerpEngine.Engine_3D.Models;
 using Microsoft.Xna.Framework;
 
-namespace KerpEngine.Engine_2D
+namespace KerpEngine.Global
 {
     /// <summary>
     /// A Octee Spatial Structure used for 3 dimensional scenes for clipping, object organization
     /// and collision detection.
     /// </summary>
-    public class Octree : SpatialStructure<GameObject3D, AABB>
+    public class Octree : SpatialStructure<GameObject3D, OABB>
     {
         /// <summary>
         /// Constants for the Octree division rules.
@@ -30,7 +29,7 @@ namespace KerpEngine.Engine_2D
         {
             _objects = new List<GameObject3D>();
             _childNodes = null;
-            _boundingVolume = new AABB(topRight, bottomLeft);
+            _boundingVolume = new OABB(topRight, bottomLeft);
         }
 
         /// <summary>
@@ -186,12 +185,17 @@ namespace KerpEngine.Engine_2D
             
         }
 
+        public override SpatialStructure<GameObject3D, OABB> FindObjectsNode(GameObject3D gameObj)
+        {
+            return null;
+        }
+
         /// <summary>
         /// Returns the Node that holds the given object.
         /// </summary>
         /// <param name="gameObj">The search object to find the containing node.</param>
         /// <returns>The Node that holds the given object.</returns>
-        public override SpatialStructure<GameObject3D, AABB> GetObjectsContainingNode(GameObject3D gameObj)
+        public override SpatialStructure<GameObject3D, OABB> GetObjectsContainingNode(GameObject3D gameObj)
         {
             //if (_boundingVolume.Contains(gameObj.BoundingVolume))
             //{

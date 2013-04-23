@@ -36,7 +36,7 @@ namespace KerpEngine.Global
         /// The current rotation angle of this object.
         /// </summary>
         protected Vector3 _rotation;
-        public virtual Vector3 Rotation { get { return _rotation; } set { this._rotation = Utilities.ClampAngleDegrees(value); } }
+        public virtual Vector3 Rotation { get { return _rotation; } set { this._rotation = Utilities.ClampAngleDegrees(value); if (_boundingVolume != null) { _boundingVolume.Rotation = _rotation; } } }
         /// <summary>
         /// The current scale factor of this object.
         /// </summary>

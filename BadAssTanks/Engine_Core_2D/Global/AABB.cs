@@ -189,19 +189,7 @@ namespace KerpEngine.Global
             effect.TextureEnabled = false;
             effect.VertexColorEnabled = true;
 
-            if (!useCollisionPoints)
-            {
-                effect.World = Matrix.Identity *
-                                     Matrix.CreateScale(_scale) *
-                                     Matrix.CreateRotationX(_rotation.X) *
-                                     Matrix.CreateRotationY(_rotation.Y) *
-                                     Matrix.CreateRotationZ(_rotation.Z) *
-                                     Matrix.CreateTranslation(_position);
-            }
-            else
-            {
-                effect.World = Matrix.Identity;
-            }
+            effect.World = Matrix.Identity;
 
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
@@ -227,144 +215,72 @@ namespace KerpEngine.Global
         {
             Color c = Color.Red;
 
-            if (!useCollisionPoints)
-            {
-                //tr - front face
-                _frontFace[0] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _topRight.Z), c);
-                //tl - front face
-                _frontFace[1] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _topRight.Y, _topRight.Z), c);
-                //bl - front face
-                _frontFace[2] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _bottomLeft.Y, _topRight.Z), c);
-                //br - front face
-                _frontFace[3] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _bottomLeft.Y, _topRight.Z), c);
-                //tr - front face
-                _frontFace[4] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _topRight.Z), c);
+            //tr - front face
+            _frontFace[0] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
+            //tl - front face
+            _frontFace[1] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
+            //bl - front face
+            _frontFace[2] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
+            //br - front face
+            _frontFace[3] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
+            //tr - front face
+            _frontFace[4] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
 
 
-                //tr 
-                _backFace[0] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _bottomLeft.Z), c);
-                //tl 
-                _backFace[1] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _topRight.Y, _bottomLeft.Z), c);
-                //bl 
-                _backFace[2] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _bottomLeft.Y, _bottomLeft.Z), c);
-                //br 
-                _backFace[3] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _bottomLeft.Y, _bottomLeft.Z), c);
-                //tr
-                _backFace[4] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _bottomLeft.Z), c);
+            //tr 
+            _backFace[0] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
+            //tl 
+            _backFace[1] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
+            //bl 
+            _backFace[2] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
+            //br 
+            _backFace[3] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
+            //tr
+            _backFace[4] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
 
 
-                //tr - 1
-                _leftFace[0] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _topRight.Y, _topRight.Z), c);
-                //tl 
-                _leftFace[1] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _topRight.Y, _bottomLeft.Z), c);
-                //bl - 
-                _leftFace[2] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _bottomLeft.Y, _bottomLeft.Z), c);
-                //br - 2
-                _leftFace[3] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _bottomLeft.Y, _topRight.Z), c);
-                //tr - 1
-                _leftFace[4] =
-                    new VertexPositionColor(new Vector3(_bottomLeft.X, _topRight.Y, _topRight.Z), c);
+            //tr - 1
+            _leftFace[0] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
+            //tl 
+            _leftFace[1] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
+            //bl - 
+            _leftFace[2] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
+            //br - 2
+            _leftFace[3] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
+            //tr - 1
+            _leftFace[4] =
+                new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
 
 
-                //tr 
-                _rightFace[0] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _bottomLeft.Z), c);
-                //tl - 0
-                _rightFace[1] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _topRight.Z), c);
-                //bl - 3
-                _rightFace[2] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _bottomLeft.Y, _topRight.Z), c);
-                //br 
-                _rightFace[3] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _bottomLeft.Y, _bottomLeft.Z), c);
-                //tr - 4
-                _rightFace[4] =
-                    new VertexPositionColor(new Vector3(_topRight.X, _topRight.Y, _bottomLeft.Z), c);
-            }
-            else
-            {
-                //tr - front face
-                _frontFace[0] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
-                //tl - front face
-                _frontFace[1] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
-                //bl - front face
-                _frontFace[2] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
-                //br - front face
-                _frontFace[3] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
-                //tr - front face
-                _frontFace[4] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
-
-
-                //tr 
-                _backFace[0] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
-                //tl 
-                _backFace[1] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
-                //bl 
-                _backFace[2] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
-                //br 
-                _backFace[3] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
-                //tr
-                _backFace[4] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
-
-
-                //tr - 1
-                _leftFace[0] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
-                //tl 
-                _leftFace[1] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
-                //bl - 
-                _leftFace[2] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
-                //br - 2
-                _leftFace[3] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
-                //tr - 1
-                _leftFace[4] =
-                    new VertexPositionColor(new Vector3(_collisionBottomLeft.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
-
-
-                //tr 
-                _rightFace[0] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
-                //tl - 0
-                _rightFace[1] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
-                //bl - 3
-                _rightFace[2] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
-                //br 
-                _rightFace[3] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
-                //tr - 4
-                _rightFace[4] =
-                    new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
-            }
+            //tr 
+            _rightFace[0] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
+            //tl - 0
+            _rightFace[1] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionTopRight.Z), c);
+            //bl - 3
+            _rightFace[2] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionTopRight.Z), c);
+            //br 
+            _rightFace[3] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionBottomLeft.Y, _collisionBottomLeft.Z), c);
+            //tr - 4
+            _rightFace[4] =
+                new VertexPositionColor(new Vector3(_collisionTopRight.X, _collisionTopRight.Y, _collisionBottomLeft.Z), c);
         }
 
         /// <summary>
@@ -373,8 +289,14 @@ namespace KerpEngine.Global
         /// </summary>
         private void UpdateCollisionPoints()
         {
-            _collisionBottomLeft = (_bottomLeft + _position);
-            _collisionTopRight = (_topRight + _position);
+            Matrix worldMatrix = Matrix.CreateScale(_scale) *
+                                 Matrix.CreateRotationX(_rotation.X) *
+                                 Matrix.CreateRotationY(_rotation.Y) *
+                                 Matrix.CreateRotationZ(_rotation.Z) *
+                                 Matrix.CreateTranslation(_position);
+
+            _collisionTopRight = Vector3.Transform(_topRight, worldMatrix);
+            _collisionBottomLeft = Vector3.Transform(_bottomLeft, worldMatrix);            
 
             UpdatePointsList();
         }

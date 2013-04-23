@@ -25,8 +25,9 @@ namespace KerpEngine.Engine_2D
         /// <param name="yLocation">The y location where the Quad Tree is located.</param>
         /// <param name="width">The width of the Quad Tree.</param>
         /// <param name="height">The height of the Quad Tree.</param>
-        public QuadTree(int xLocation, int yLocation, int width, int height)
+        public QuadTree(QuadTree parent, float xLocation, float yLocation, float width, float height)
         {
+            _parent = parent;
             _objects = new List<GameObject>();
             _childNodes = null;
             _boundingVolume = new AABB(new Vector3(xLocation, yLocation, 0.0f), width, height);
@@ -106,6 +107,10 @@ namespace KerpEngine.Engine_2D
                     }
                 }
             }
+            else
+            {
+                gameObj.Move(new Vector3());
+            }
         }
 
         /// <summary>
@@ -115,38 +120,38 @@ namespace KerpEngine.Engine_2D
         {
             _childNodes = new QuadTree[4];
 
-            int x = (int)_boundingVolume.X;
-            int y = (int)_boundingVolume.Y;
-            int width = (int)_boundingVolume.Width;
-            int height = (int)_boundingVolume.Height;
+            float x = _boundingVolume.X;
+            float y = _boundingVolume.Y;
+            float width = _boundingVolume.Width;
+            float height = _boundingVolume.Height;
 
             //top left node
-            _childNodes[0] = new QuadTree(
-                x - (width / 4),
-                y + (height / 4),
-                width / 2,
-                height / 2);
+            _childNodes[0] = new QuadTree(this,
+                x - (width / 4.0f),
+                y + (height / 4.0f),
+                width / 2.0f,
+                height / 2.0f);
 
             //top right node
-            _childNodes[1] = new QuadTree(
-                x + (width / 4),
-                y + (height / 4),
-                width / 2,
-                height / 2);
+            _childNodes[1] = new QuadTree(this,
+                x + (width / 4.0f),
+                y + (height / 4.0f),
+                width / 2.0f,
+                height / 2.0f);
 
             //bottom left node
-            _childNodes[2] = new QuadTree(
-                x - (width / 4),
-                y - (height / 4),
-                width / 2,
-                height / 2);
+            _childNodes[2] = new QuadTree(this,
+                x - (width / 4.0f),
+                y - (height / 4.0f),
+                width / 2.0f,
+                height / 2.0f);
 
             //bottom right node
-            _childNodes[3] = new QuadTree(
-                x + (width / 4),
-                y - (height / 4),
-                width / 2,
-                height / 2);
+            _childNodes[3] = new QuadTree(this,
+                x + (width / 4.0f),
+                y - (height / 4.0f),
+                width / 2.0f,
+                height / 2.0f);
         }
 
         /// <summary>
@@ -155,7 +160,61 @@ namespace KerpEngine.Engine_2D
         /// <param name="gameObj">The object to remove from the structure.</param>
         public override void RemoveObject(GameObject gameObj)
         {
+            if (_objects.Contains(gameObj))
+            {
+                _objects.Remove(gameObj);
+            }
+            else
+            {
+                FindObjectsNode(gameObj).RemoveObject(gameObj);
+            }
+
+            if (_parent != null)
+            {
+                if (QuadTree.GetAllObjectsInNode(_parent).Count == 0)
+                {
+                    _parent.RedistributeObjects();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameObj"></param>
+        /// <returns></returns>
+        public override SpatialStructure<GameObject, AABB> FindObjectsNode(GameObject gameObj)
+        {
+            if (_childNodes == null)
+            {
+                if (_objects.Contains(gameObj))
+                {
+                    return this;
+                }
+            }
+            else
+            {
+                if (_objects.Contains(gameObj))
+                {
+                    return this;
+                }
+                else
+                {
+                    SpatialStructure<GameObject, AABB> returned;
+
+                    for (int i = 0; i < _childNodes.Length; i++)
+                    {
+                        returned = _childNodes[i].FindObjectsNode(gameObj);
+
+                        if (returned != null)
+                        {
+                            return returned;
+                        }
+                    }
+                }
+            }
             
+            return null;
         }
 
         /// <summary>
@@ -188,7 +247,6 @@ namespace KerpEngine.Engine_2D
             return null;
         }
         
-
         /// <summary>
         /// Draws this Quad Tree node on the screen.
         /// </summary>
@@ -208,35 +266,3 @@ namespace KerpEngine.Engine_2D
         }
     }
 }
-
-
-/*
-		/// <summary>
-		/// Recursively populates a list with all of the rectangles in this
-		/// quad and any subdivision quads.  Use the "AddRange" method of
-		/// the list class to add the elements from one list to another.
-		/// </summary>
-		/// <returns>A list of rectangles</returns>
-		public List<Rectangle> GetAllRectangles()
-		{
-			List<Rectangle> rects = new List<Rectangle>();
-
-            rects.Add(_boundingVolume);
-            if (_childNodes != null)
-            {
-                for (int i = 0; i < _childNodes.Length; i++)
-                {
-                    rects.AddRange(_childNodes[i].GetAllRectangles());
-                }
-            }
-
-			return rects;
-		}
-
-		
-		#endregion
-	}
-}
-
-}
-*/

@@ -85,7 +85,7 @@ namespace KerpEngine.Engine_2D
                                Matrix.CreateTranslation(_position.X, _position.Y, 0.0f);
 
                 _sprite.Draw(device, effect);
-               // _boundingVolume.Draw(device, effect);
+                _boundingVolume.Draw(device, effect);
             }
         }
     }

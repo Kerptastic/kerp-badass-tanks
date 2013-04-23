@@ -339,7 +339,7 @@ namespace KerpEngine.Global
         /// </summary>
         private void UpdateCollisionPoints()
         {
-            Matrix worldMatrix =
+            Matrix worldMatrix = Matrix.CreateScale(_scale) *
                                  Matrix.CreateRotationX(_rotation.X) *
                                  Matrix.CreateRotationY(_rotation.Y) *
                                  Matrix.CreateRotationZ(_rotation.Z) *

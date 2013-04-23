@@ -41,7 +41,7 @@ namespace BadassTanksXNA
             _camera2d = new Camera2D(GraphicsDevice.Viewport, new Vector3(0, 4, 10));
 
             _camera3d = new Camera3DFirstPerson(GraphicsDevice.Viewport,
-                new Vector3(0, 0, -10), new Vector3(0.0f, 0.0f, 0.0f));
+                new Vector3(0, 0, 70), new Vector3(0.0f, 0.0f, 0.0f));
 
             quadEffect = new BasicEffect(_graphicsDevice);
         }
@@ -49,6 +49,8 @@ namespace BadassTanksXNA
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            _gameWorld.Update(gameTime);
 
             GamePadState playerOneController = GamePad.GetState(PlayerIndex.One);
 
@@ -82,14 +84,14 @@ namespace BadassTanksXNA
             if (keyboard.IsKeyDown(Keys.D))
             {
 
-                this._gameWorld.MeshObject.Rotate(new Vector3(0.0f, -rotateAmount, 0.0f));
-                //this._gameWorld.TestObject.Move(new Vector2(1.0f, 0.0f), amount * 10);
+                //this._gameWorld.MeshObject.Rotate(new Vector3(0.0f, -rotateAmount, 0.0f));
+                //this._gameWorld.TestObject.Move(new Vector2(1.0f, 0.0f), );
                 
             }
             if (keyboard.IsKeyDown(Keys.A))
             {
-                this._gameWorld.MeshObject.Rotate(new Vector3(0.0f, rotateAmount, 0.0f));
-                //this._gameWorld.TestObject.Move(new Vector2(-1.0f, 0.0f), amount);
+                //this._gameWorld.MeshObject.Rotate(new Vector3(0.0f, rotateAmount, 0.0f));
+                //
                 //this.cam.Move(new Vector3(1.0f, 0.0f, 0.0f), 0.05f);
             }
             if (keyboard.IsKeyDown(Keys.S))
@@ -102,6 +104,40 @@ namespace BadassTanksXNA
                 this._gameWorld.MeshObject.Move(new Vector3(0.0f, 0.0f, 1.0f));
                // _camera3d.Move(new Vector3(0.0f, 0.0f, 0.05f));
             }
+
+            if (keyboard.IsKeyDown(Keys.S))
+            {
+                this._gameWorld.MeshObject.Move(new Vector3(0.0f, 0.0f, -1.0f));
+                //_camera3d.Move(new Vector3(0.0f, 0.0f, -0.05f));
+            }
+
+
+
+            if (keyboard.IsKeyDown(Keys.Up))
+            {
+                this._gameWorld.TestObject.Move(new Vector3(0.0f, 2.0f, 0.0f));
+            }
+
+            if (keyboard.IsKeyDown(Keys.Down))
+            {
+                this._gameWorld.TestObject.Move(new Vector3(0.0f, -2.0f, 0.0f));
+            }
+
+            if (keyboard.IsKeyDown(Keys.Left))
+            {
+                this._gameWorld.TestObject.Move(new Vector3(-2.0f, 0.0f, 0.0f));
+            }
+
+            if (keyboard.IsKeyDown(Keys.Right))
+            {
+                this._gameWorld.TestObject.Move(new Vector3(2.0f, 0.0f, 0.0f));
+            }
+
+            if (keyboard.IsKeyDown(Keys.Space))
+            {
+                this._gameWorld.CheckCollisions();
+            }
+
             if (keyboard.IsKeyDown(Keys.Escape))
             {
                 this.Exit();
